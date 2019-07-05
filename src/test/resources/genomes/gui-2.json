@@ -1,0 +1,11 @@
+{
+  "nodes":[
+    { "id": 1, "type": "INPUT" },
+    { "id": 2, "type": "INPUT" },
+    { "id": 3, "type": "INPUT" },
+    { "id": 4, "type": "OUTPUT" }
+  ],
+  "connections": [
+    { "innovation": 1, "in": 1, "out": 4, "weight": 1.0, "expressed": true }
+  ]
+}

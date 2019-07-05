@@ -1,0 +1,9 @@
+{
+  "nodes":[
+    { "id": 1, "type": "INPUT" },
+    { "id": 2, "type": "INPUT" },
+    { "id": 3, "type": "INPUT" },
+    { "id": 4, "type": "OUTPUT" }
+  ],
+  "connections": []
+}

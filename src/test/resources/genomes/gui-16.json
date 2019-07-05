@@ -1,0 +1,25 @@
+{
+  "nodes" : [
+    { "id" : 1, "type" : "INPUT" },
+    { "id" : 2, "type" : "INPUT" },
+    { "id" : 3, "type" : "OUTPUT" },
+    { "id" : 4, "type" : "HIDDEN" },
+    { "id" : 5, "type" : "HIDDEN" },
+    { "id" : 6, "type" : "HIDDEN" },
+    { "id" : 7, "type" : "HIDDEN" }
+  ],
+  "connections" : [
+    { "innovation" : 1, "in" : 1, "out" : 3, "weight" : 2.9569613E-10, "expressed" : true },
+    { "innovation" : 2, "in" : 2, "out" : 3, "weight" : 1.2415065E-12, "expressed" : false },
+    { "innovation" : 55, "in" : 2, "out" : 4, "weight" : -2204.0369, "expressed" : true },
+    { "innovation" : 56, "in" : 4, "out" : 3, "weight" : 13.008627, "expressed" : false },
+    { "innovation" : 89, "in" : 4, "out" : 5, "weight" : -755.3191, "expressed" : true },
+    { "innovation" : 90, "in" : 5, "out" : 3, "weight" : 5919.865, "expressed" : true },
+    { "innovation" : 127, "in" : 1, "out" : 4, "weight" : 3616.2349, "expressed" : true },
+    { "innovation" : 1674, "in" : 4, "out" : 6, "weight" : -1.9594535, "expressed" : true },
+    { "innovation" : 1675, "in" : 6, "out" : 3, "weight" : -58.776688, "expressed" : true },
+    { "innovation" : 3413, "in" : 2, "out" : 6, "weight" : 10.270669, "expressed" : true },
+    { "innovation" : 5352, "in" : 4, "out" : 7, "weight" : 2.0906012, "expressed" : true },
+    { "innovation" : 5353, "in" : 7, "out" : 3, "weight" : 3.8573322, "expressed" : true }
+  ]
+}
