@@ -15,24 +15,23 @@ import java.util.Collections;
  * to avoid having to create every damn object required every time.
  *
  * This can create all objects with default configs and allows you to get them and reconfigure at any time.
+ *
+ * Or even swap em out.
  */
 public class Neat {
 
-    private final Random random;
-    private final GeneFactory geneFactory;
-    private final GenomeMutator mutator;
-    private final GenomeValidator validator;
-    private final GenomeFactory genomeFactory;
-    private final GenomeComparator genomeComparator;
-    private final SpeciesFactory speciesFactory;
-    private final GenerationFactory generationFactory;
-    private final GenerationEvaluator generationEvaluator;
+    private int inputs;
+    private int outputs;
 
-    // TODO json file with all the settings and such.
-    // Possibility to save evolved networks as well.
-    public static Neat load(File file) {
-        return null;
-    }
+    private Random random;
+    private GeneFactory geneFactory;
+    private GenomeMutator mutator;
+    private GenomeValidator validator;
+    private GenomeFactory genomeFactory;
+    private GenomeComparator genomeComparator;
+    private SpeciesFactory speciesFactory;
+    private GenerationFactory generationFactory;
+    private GenerationEvaluator generationEvaluator;
 
     public static Neat create(GenomeEvaluator evaluator, int inputs, int outputs) {
         Random random = new Random(System.currentTimeMillis());
@@ -43,13 +42,16 @@ public class Neat {
         GenomeComparator genomeComparator = new GenomeComparator();
         SpeciesFactory speciesFactory = new SpeciesFactory(genomeComparator);
 
-        Genome starter = Genome.create(geneFactory,inputs, outputs);
+        Genome starter = Genome.create(geneFactory, inputs, outputs);
         Generation firstGeneration = new Generation(Collections.singletonList(speciesFactory.createSpecies(starter)));
         GenerationFactory generationFactory = new GenerationFactory(genomeFactory, speciesFactory);
         GenerationEvaluator generationEvaluator = new GenerationEvaluator(evaluator, generationFactory, firstGeneration);
 
-        return new Neat(random, geneFactory, mutator, validator, genomeFactory,
+        Neat neat = new Neat(random, geneFactory, mutator, validator, genomeFactory,
                 genomeComparator, speciesFactory, generationFactory, generationEvaluator);
+        neat.inputs = inputs;
+        neat.outputs = outputs;
+        return neat;
     }
 
     // Ridiculous constructor I know, but this is just a convenience class so you don't have to create all of these.
@@ -67,43 +69,87 @@ public class Neat {
         this.generationEvaluator = generationEvaluator;
     }
 
+    public Generation evolve() {
+        return generationEvaluator.nextGeneration();
+    }
+
+    public int getInputs() {
+        return inputs;
+    }
+
+    public int getOutputs() {
+        return outputs;
+    }
+
     public Random getRandom() {
         return random;
+    }
+
+    public void setRandom(Random random) {
+        this.random = random;
     }
 
     public GeneFactory getGeneFactory() {
         return geneFactory;
     }
 
+    public void setGeneFactory(GeneFactory geneFactory) {
+        this.geneFactory = geneFactory;
+    }
+
     public GenomeMutator getMutator() {
         return mutator;
+    }
+
+    public void setMutator(GenomeMutator mutator) {
+        this.mutator = mutator;
     }
 
     public GenomeValidator getValidator() {
         return validator;
     }
 
+    public void setValidator(GenomeValidator validator) {
+        this.validator = validator;
+    }
+
     public GenomeFactory getGenomeFactory() {
         return genomeFactory;
+    }
+
+    public void setGenomeFactory(GenomeFactory genomeFactory) {
+        this.genomeFactory = genomeFactory;
     }
 
     public GenomeComparator getGenomeComparator() {
         return genomeComparator;
     }
 
+    public void setGenomeComparator(GenomeComparator genomeComparator) {
+        this.genomeComparator = genomeComparator;
+    }
+
     public SpeciesFactory getSpeciesFactory() {
         return speciesFactory;
+    }
+
+    public void setSpeciesFactory(SpeciesFactory speciesFactory) {
+        this.speciesFactory = speciesFactory;
     }
 
     public GenerationFactory getGenerationFactory() {
         return generationFactory;
     }
 
+    public void setGenerationFactory(GenerationFactory generationFactory) {
+        this.generationFactory = generationFactory;
+    }
+
     public GenerationEvaluator getGenerationEvaluator() {
         return generationEvaluator;
     }
 
-    public Generation evolve() {
-        return generationEvaluator.nextGeneration();
+    public void setGenerationEvaluator(GenerationEvaluator generationEvaluator) {
+        this.generationEvaluator = generationEvaluator;
     }
 }

@@ -97,6 +97,10 @@ public class GenerationEvaluator {
         return unimprovedCount;
     }
 
+    public void setUnimprovedCount(int unimprovedCount) {
+        this.unimprovedCount = unimprovedCount;
+    }
+
     public int getRefocusThreshold() {
         return refocusThreshold;
     }
