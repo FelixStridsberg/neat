@@ -1,11 +1,13 @@
 package com.vadeen.neat.io;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.vadeen.neat.Neat;
 import com.vadeen.neat.gene.GeneFactory;
 import com.vadeen.neat.generation.Generation;
 import com.vadeen.neat.genome.Genome;
 import com.vadeen.neat.io.json.GenerationJson;
 import com.vadeen.neat.io.json.GenomeJson;
+import com.vadeen.neat.io.json.NeatJson;
 import com.vadeen.neat.io.json.PrettyPrinter;
 import com.vadeen.neat.species.Species;
 import com.vadeen.neat.species.SpeciesFactory;
@@ -77,5 +79,9 @@ public class NeatIO {
         ObjectMapper mapper = new ObjectMapper();
         mapper.setDefaultPrettyPrinter(new PrettyPrinter(3));
         mapper.writerWithDefaultPrettyPrinter().writeValue(file, json);
+    }
+
+    public static void write(File file, Neat neat) {
+//        NeatJson json =
     }
 }
