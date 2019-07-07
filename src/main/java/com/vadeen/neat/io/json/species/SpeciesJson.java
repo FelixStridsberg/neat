@@ -32,7 +32,7 @@ public class SpeciesJson {
 
         genomes.stream()
                 .map(g -> g.toGenome(geneFactory))
-                .filter(e -> e.equals(reference))
+                .filter(e -> !e.equals(reference))
                 .forEach(species::addGenome);
 
         return species;
