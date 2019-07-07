@@ -60,6 +60,6 @@ public class GenomeJson {
                 .map(j -> j.toConnection(geneFactory))
                 .collect(Collectors.toList());
 
-        return Genome.create(connections, nodes);
+        return Genome.create(id, connections, nodes);
     }
 }
