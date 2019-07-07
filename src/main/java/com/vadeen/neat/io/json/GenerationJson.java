@@ -3,17 +3,15 @@ package com.vadeen.neat.io.json;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.vadeen.neat.gene.GeneFactory;
 import com.vadeen.neat.generation.Generation;
-import com.vadeen.neat.genome.Genome;
 import com.vadeen.neat.species.Species;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class GenerationJson {
 
     @JsonProperty
-    List<SpeciesJson> species;
+    private List<SpeciesJson> species;
 
     public static GenerationJson of(Generation generation) {
         List<SpeciesJson> speciesJson = generation.getSpecies().stream()

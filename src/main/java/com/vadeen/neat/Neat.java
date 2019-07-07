@@ -7,7 +7,6 @@ import com.vadeen.neat.generation.GenerationFactory;
 import com.vadeen.neat.genome.*;
 import com.vadeen.neat.species.SpeciesFactory;
 
-import java.io.File;
 import java.util.Collections;
 
 /**

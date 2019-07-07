@@ -1,9 +1,7 @@
 package com.vadeen.neat.io.json;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vadeen.neat.Neat;
-import com.vadeen.neat.generation.Generation;
 import com.vadeen.neat.generation.GenerationEvaluator;
 import com.vadeen.neat.generation.GenerationFactory;
 import com.vadeen.neat.genome.Genome;
