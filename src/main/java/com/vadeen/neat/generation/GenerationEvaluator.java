@@ -132,10 +132,6 @@ public class GenerationEvaluator {
      * Evaluate the genomes.
      */
     private void evaluate(Generation generation) {
-        List<Genome> genomes = new ArrayList<>();
-        for (Species s : generation.getSpecies())
-            genomes.addAll(s.getGenomes());
-
-        evaluator.evaluateAll(genomes);
+        evaluator.evaluateAll(generation.getSpecies());
     }
 }

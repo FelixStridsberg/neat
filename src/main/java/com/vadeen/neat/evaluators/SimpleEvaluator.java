@@ -2,6 +2,7 @@ package com.vadeen.neat.evaluators;
 
 import com.vadeen.neat.genome.Genome;
 import com.vadeen.neat.genome.GenomeEvaluator;
+import com.vadeen.neat.species.Species;
 
 import java.util.List;
 
@@ -11,9 +12,11 @@ import java.util.List;
 public abstract class SimpleEvaluator implements GenomeEvaluator {
 
     @Override
-    public void evaluateAll(List<Genome> genomes) {
-        for (Genome g : genomes) {
-            g.setFitness(evaluate(g));
+    public void evaluateAll(List<Species> species) {
+        for (Species s : species) {
+            for (Genome g : s.getGenomes()) {
+                g.setFitness(evaluate(g));
+            }
         }
     }
 

@@ -1,5 +1,7 @@
 package com.vadeen.neat.genome;
 
+import com.vadeen.neat.species.Species;
+
 import java.util.List;
 
 /**
@@ -9,7 +11,7 @@ public interface GenomeEvaluator {
 
     /**
      * Evaluates all genomes and sets the fitness.
-     * @param genomes The genomes to be evaluated.
+     * @param species The species to be evaluated.
      */
-    void evaluateAll(List<Genome> genomes);
+    void evaluateAll(List<Species> species);
 }
