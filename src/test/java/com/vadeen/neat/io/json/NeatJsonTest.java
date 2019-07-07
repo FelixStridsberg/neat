@@ -78,7 +78,7 @@ public class NeatJsonTest {
 
         // Read json
         NeatJson readJson = mapper.readValue(json, NeatJson.class);
-        Neat readNeat = NeatJson.toNeat(null, readJson);
+        Neat readNeat = readJson.toNeat(null);
 
 
 
