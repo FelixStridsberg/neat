@@ -5,6 +5,8 @@ import com.vadeen.neat.Neat;
 import com.vadeen.neat.gene.GeneFactory;
 import com.vadeen.neat.generation.Generation;
 import com.vadeen.neat.genome.Genome;
+import com.vadeen.neat.genome.GenomeEvaluator;
+import com.vadeen.neat.io.json.NeatJson;
 import com.vadeen.neat.io.json.generation.GenerationJson;
 import com.vadeen.neat.io.json.genome.GenomeJson;
 import com.vadeen.neat.io.json.PrettyPrinter;
@@ -46,6 +48,13 @@ public class NeatIO {
         return json.toGenome(geneFactory);
     }
 
+    public static Neat readNeat(File file, GenomeEvaluator evaluator) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+
+        NeatJson json = mapper.readValue(file, NeatJson.class);
+        return json.toNeat(evaluator);
+    }
+
     public static Generation readGeneration(File file, GeneFactory geneFactory) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         GenerationJson json = mapper.readValue(file, GenerationJson.class);
@@ -68,7 +77,11 @@ public class NeatIO {
         mapper.writerWithDefaultPrettyPrinter().writeValue(file, json);
     }
 
-    public static void write(File file, Neat neat) {
-//        NeatJson json =
+    public static void write(File file, Neat neat) throws IOException {
+        NeatJson json = NeatJson.of(neat);
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setDefaultPrettyPrinter(new PrettyPrinter(3));
+        mapper.writerWithDefaultPrettyPrinter().writeValue(file, json);
     }
 }

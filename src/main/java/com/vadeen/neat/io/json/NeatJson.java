@@ -66,22 +66,22 @@ public class NeatJson {
         return neatJson;
     }
 
-    public static Neat toNeat(GenomeEvaluator evaluator, NeatJson json) {
+    public Neat toNeat(GenomeEvaluator evaluator) {
         Random random = new Random();
 
         GenomeValidator validator = new GenomeValidator();
-        GeneFactory geneFactory = json.geneFactory.toGeneFactory();
-        GenomeMutator mutator = json.genomeMutator.toGenomeMutator(random, geneFactory);
-        GenomeFactory genomeFactory = json.genomeFactory.toGenomeFactory(mutator, validator, random);
-        GenomeComparator genomeComparator = json.genomeComparator.toGenomeComparator();
-        SpeciesFactory speciesFactory = json.speciesFactory.toSpeciesFactory(genomeComparator);
-        GenerationFactory generationFactory = json.generationFactory.toGenerationFactor(genomeFactory, speciesFactory);
-        Generation generation = json.generation.toGeneration(geneFactory);
+        GeneFactory geneFactory = this.geneFactory.toGeneFactory();
+        GenomeMutator mutator = this.genomeMutator.toGenomeMutator(random, geneFactory);
+        GenomeFactory genomeFactory = this.genomeFactory.toGenomeFactory(mutator, validator, random);
+        GenomeComparator genomeComparator = this.genomeComparator.toGenomeComparator();
+        SpeciesFactory speciesFactory = this.speciesFactory.toSpeciesFactory(genomeComparator);
+        GenerationFactory generationFactory = this.generationFactory.toGenerationFactor(genomeFactory, speciesFactory);
+        Generation generation = this.generation.toGeneration(geneFactory);
 
 
         Neat neat = Neat.create(evaluator, generation);
 
-        GenerationEvaluator generationEvaluator = json.generationEvaluator.toGenerationEvaluator(
+        GenerationEvaluator generationEvaluator = this.generationEvaluator.toGenerationEvaluator(
                 evaluator, generationFactory, neat.getGenerationEvaluator().getGeneration());
 
         neat.setMutator(mutator);
