@@ -3,7 +3,6 @@ package com.vadeen.neat.gui;
 import com.vadeen.neat.gene.ConnectionGene;
 import com.vadeen.neat.gene.NodeGene;
 import com.vadeen.neat.genome.Genome;
-import org.w3c.dom.Node;
 
 import javax.swing.*;
 import java.awt.*;

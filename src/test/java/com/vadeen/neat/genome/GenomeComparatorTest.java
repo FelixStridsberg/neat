@@ -3,7 +3,6 @@ package com.vadeen.neat.genome;
 import com.vadeen.neat.io.NeatIO;
 import org.junit.Test;
 
-import java.io.File;
 import java.io.IOException;
 
 import static org.hamcrest.CoreMatchers.is;
