@@ -22,7 +22,7 @@ public class Species implements Comparable<Species> {
     // Cache
     private Float fitness = null;
 
-    Species(int id, Genome reference) {
+    public Species(int id, Genome reference) {
         this.id = id;
         this.reference = reference;
         genomes.add(reference);

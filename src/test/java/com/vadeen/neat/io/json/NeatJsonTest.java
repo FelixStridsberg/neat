@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vadeen.neat.Neat;
 import com.vadeen.neat.generation.GenerationEvaluator;
 import com.vadeen.neat.generation.GenerationFactory;
+import com.vadeen.neat.genome.Genome;
 import com.vadeen.neat.genome.GenomeComparator;
 import com.vadeen.neat.genome.GenomeFactory;
 import com.vadeen.neat.genome.GenomeMutator;
@@ -21,7 +22,7 @@ public class NeatJsonTest {
     public void testGenerateJson() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
 
-        Neat neat = Neat.create(null, 5, 10);
+        Neat neat = Neat.create(null, 2, 1);
 
         // Set values
         // Mutator
@@ -108,5 +109,14 @@ public class NeatJsonTest {
         GenerationEvaluator readGenerationEvaluator = readNeat.getGenerationEvaluator();
         assertEquals(readGenerationEvaluator.getUnimprovedCount(), 6001);
         assertEquals(readGenerationEvaluator.getRefocusThreshold(), 6002);
+
+        // Species
+        assertEquals(readGenerationEvaluator.getGeneration().getSpecies().size(), 1);
+        assertEquals(readGenerationEvaluator.getGeneration().getSpecies().get(0).getGenomes().size(), 1);
+
+        // Number of out and in nodes in a genome
+        Genome readGenome = readGenerationEvaluator.getGeneration().getSpecies().get(0).getGenomes().get(0);
+        assertEquals(readGenome.getInputNodes().size(), 2);
+        assertEquals(readGenome.getOutputNodes().size(), 1);
     }
 }

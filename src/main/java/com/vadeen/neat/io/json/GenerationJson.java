@@ -1,37 +1,35 @@
 package com.vadeen.neat.io.json;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.vadeen.neat.gene.GeneFactory;
 import com.vadeen.neat.generation.Generation;
 import com.vadeen.neat.genome.Genome;
 import com.vadeen.neat.species.Species;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GenerationJson {
 
     @JsonProperty
-    List<GenomeJson> genomes;
+    List<SpeciesJson> species;
 
     public static GenerationJson fromGeneration(Generation generation) {
-        List<GenomeJson> genomes = new ArrayList<>();
+        List<SpeciesJson> speciesJson = generation.getSpecies().stream()
+                .map(SpeciesJson::of)
+                .collect(Collectors.toList());
 
-        for (Species s : generation.getSpecies()) {
-            for (Genome g : s.getGenomes()) {
-                genomes.add(GenomeJson.fromGenome(g));
-            }
-        }
-
-        return new GenerationJson(genomes);
+        GenerationJson json = new GenerationJson();
+        json.species = speciesJson;
+        return json;
     }
 
-    public GenerationJson() {}
+    public Generation toGeneration(GeneFactory geneFactory) {
+        List<Species> species = this.species.stream()
+                .map(s -> s.toSpecies(geneFactory))
+                .collect(Collectors.toList());
 
-    private GenerationJson(List<GenomeJson> genomes) {
-        this.genomes = genomes;
-    }
-
-    public List<GenomeJson> getGenomes() {
-        return genomes;
+        return new Generation(species);
     }
 }
