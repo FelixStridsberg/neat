@@ -2,6 +2,7 @@ package com.vadeen.neat.io.json;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.vadeen.neat.gene.GeneFactory;
+import com.vadeen.neat.genome.Genome;
 import com.vadeen.neat.species.Species;
 
 import java.util.List;
@@ -25,10 +26,12 @@ public class SpeciesJson {
     }
 
     public Species toSpecies(GeneFactory geneFactory) {
-        Species species = new Species(id, reference.toGenome(geneFactory));
+        Genome reference = this.reference.toGenome(geneFactory);
+        Species species = new Species(id, reference);
 
         genomes.stream()
                 .map(g -> g.toGenome(geneFactory))
+                .filter(e -> e.equals(reference))
                 .forEach(species::addGenome);
 
         return species;
