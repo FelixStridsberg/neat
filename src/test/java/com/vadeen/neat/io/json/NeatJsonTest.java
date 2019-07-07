@@ -14,7 +14,8 @@ import org.junit.Test;
 
 import java.io.IOException;
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class NeatJsonTest {
 
@@ -84,54 +85,54 @@ public class NeatJsonTest {
         // Check all values are the same
         // Mutator
         GenomeMutator readMutator = readNeat.getMutator();
-        assertEquals(readMutator.getNodeMutationProbability(), 1001.0f, 0.0f);
-        assertEquals(readMutator.getConnectionMutationProbability(), 1002.0f, 0.0f);
-        assertEquals(readMutator.getWeightMutationProbability(), 1003.0f, 0.0f);
-        assertEquals(readMutator.getWeightMutationRenewProbability(), 1004.0f, 0.0f);
-        assertEquals(readMutator.getWeightPerturbingFactor(), 1005.0f, 0.0f);
+        assertThat(readMutator.getNodeMutationProbability(), is(1001.0f));
+        assertThat(readMutator.getConnectionMutationProbability(), is(1002.0f));
+        assertThat(readMutator.getWeightMutationProbability(), is(1003.0f));
+        assertThat(readMutator.getWeightMutationRenewProbability(), is(1004.0f));
+        assertThat(readMutator.getWeightPerturbingFactor(), is(1005.0f));
 
         // Genome factory
         GenomeFactory readGenomeFactory = readNeat.getGenomeFactory();
-        assertEquals(readGenomeFactory.getBreedMutationProbability(), 2001.0f, 0.0f);
-        assertEquals(readGenomeFactory.getReexpressProbability(), 2002.0f, 0.0f);
+        assertThat(readGenomeFactory.getBreedMutationProbability(), is(2001.0f));
+        assertThat(readGenomeFactory.getReexpressProbability(), is(2002.0f));
 
         // Genome comparator
         GenomeComparator readComparator = readNeat.getGenomeComparator();
-        assertEquals(readComparator.getExcessFactor(), 3001.0f, 0.0f);
-        assertEquals(readComparator.getDisjointFactor(), 3002.0f, 0.0f);
-        assertEquals(readComparator.getWeightDiffFactor(), 3003.0f, 0.0f);
-        assertEquals(readComparator.getNormalizeThreshold(), 3004);
+        assertThat(readComparator.getExcessFactor(), is(3001.0f));
+        assertThat(readComparator.getDisjointFactor(), is(3002.0f));
+        assertThat(readComparator.getWeightDiffFactor(), is(3003.0f));
+        assertThat(readComparator.getNormalizeThreshold(), is(3004));
 
         // Species factory
         SpeciesFactory readSpeciesFactory = readNeat.getSpeciesFactory();
-        assertEquals(readSpeciesFactory.getDistanceThreshold(), 4001);
+        assertThat(readSpeciesFactory.getDistanceThreshold(), is(4001));
 
         // Generation factory
         GenerationFactory readGenerationFactory = readNeat.getGenerationFactory();
-        assertEquals(readGenerationFactory.getPopulationSize(), 5004);
-        assertEquals(readGenerationFactory.getRefocusSpeciesCount(), 5005);
-        assertEquals(readGenerationFactory.getOffspringByMutation(), 5005.0f, 0.0f);
-        assertEquals(readGenerationFactory.getMaxSpeciesProportion(), 5005.0f, 0.0f);
+        assertThat(readGenerationFactory.getPopulationSize(), is(5004));
+        assertThat(readGenerationFactory.getRefocusSpeciesCount(), is(5005));
+        assertThat(readGenerationFactory.getOffspringByMutation(), is(5005.0f));
+        assertThat(readGenerationFactory.getMaxSpeciesProportion(), is(5005.0f));
 
         // Generation evaluator
         GenerationEvaluator readGenerationEvaluator = readNeat.getGenerationEvaluator();
-        assertEquals(readGenerationEvaluator.getUnimprovedCount(), 6001);
-        assertEquals(readGenerationEvaluator.getRefocusThreshold(), 6002);
-        assertEquals(readGenerationEvaluator.getGenerationCounter(), 6003);
+        assertThat(readGenerationEvaluator.getUnimprovedCount(), is(6001));
+        assertThat(readGenerationEvaluator.getRefocusThreshold(), is(6002));
+        assertThat(readGenerationEvaluator.getGenerationCounter(), is(6003));
 
         // Gene factory
         GeneFactory readGeneFactory = readNeat.getGeneFactory();
-        assertEquals(readGeneFactory.getConnectionCounter(), 7001);
-        assertEquals(readGeneFactory.getNodeCounter(), 7002);
+        assertThat(readGeneFactory.getConnectionCounter(), is(7001));
+        assertThat(readGeneFactory.getNodeCounter(), is(7002));
 
         // Species
-        assertEquals(readGenerationEvaluator.getGeneration().getSpecies().size(), 1);
-        assertEquals(readGenerationEvaluator.getGeneration().getSpecies().get(0).getGenomes().size(), 1);
+        assertThat(readGenerationEvaluator.getGeneration().getSpecies().size(), is(1));
+        assertThat(readGenerationEvaluator.getGeneration().getSpecies().get(0).getGenomes().size(), is(1));
 
         // Number of out and in nodes in a genome
         Genome readGenome = readGenerationEvaluator.getGeneration().getSpecies().get(0).getGenomes().get(0);
-        assertEquals(readGenome.getInputNodes().size(), 2);
-        assertEquals(readGenome.getOutputNodes().size(), 1);
-        assertEquals(readGenome.getFitness(), 100.0f, 0.0f);
+        assertThat(readGenome.getInputNodes().size(), is(2));
+        assertThat(readGenome.getOutputNodes().size(), is(1));
+        assertThat(readGenome.getFitness(), is(100.0f));
     }
 }

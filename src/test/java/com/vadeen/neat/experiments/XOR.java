@@ -11,7 +11,6 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 
-import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.fail;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -21,7 +20,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 public class XOR {
 
-    private final int MAX_GENERATIONS = 300;
+    private final static int MAX_GENERATIONS = 300;
 
     private GenomeEvaluator evaluator = new SimpleEvaluator() {
         private final List<List<Float>> input = Arrays.asList(
@@ -66,7 +65,7 @@ public class XOR {
             generation = neat.evolve();
 
             // Assert generation number.
-            assertEquals(i, generation.getGenerationNumber());
+            assertThat(generation.getGenerationNumber(), is(i));
 
             Genome bestGenome = generation.getBestGenome();
 
