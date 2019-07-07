@@ -23,6 +23,9 @@ public class GenomeJson {
     private int id;
 
     @JsonProperty
+    private float fitness;
+
+    @JsonProperty
     private List<NodeJson> nodes;
 
     @JsonProperty
@@ -31,6 +34,7 @@ public class GenomeJson {
     public static GenomeJson of(Genome genome) {
         GenomeJson json = new GenomeJson();
         json.id = genome.id;
+        json.fitness = genome.getFitness();
         json.nodes = genome.getNodes().values().stream()
                 .map(NodeJson::of)
                 .collect(Collectors.toList());
@@ -60,6 +64,8 @@ public class GenomeJson {
                 .map(j -> j.toConnection(geneFactory))
                 .collect(Collectors.toList());
 
-        return Genome.create(id, connections, nodes);
+        Genome genome = Genome.create(id, connections, nodes);
+        genome.setFitness(fitness);
+        return genome;
     }
 }
