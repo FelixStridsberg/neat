@@ -1,4 +1,4 @@
-package com.vadeen.neat.io.json.neat;
+package com.vadeen.neat.io.json.genome;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.vadeen.neat.genome.GenomeComparator;

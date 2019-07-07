@@ -5,8 +5,8 @@ import com.vadeen.neat.Neat;
 import com.vadeen.neat.gene.GeneFactory;
 import com.vadeen.neat.generation.Generation;
 import com.vadeen.neat.genome.Genome;
-import com.vadeen.neat.io.json.GenerationJson;
-import com.vadeen.neat.io.json.GenomeJson;
+import com.vadeen.neat.io.json.generation.GenerationJson;
+import com.vadeen.neat.io.json.genome.GenomeJson;
 import com.vadeen.neat.io.json.PrettyPrinter;
 
 import java.io.File;

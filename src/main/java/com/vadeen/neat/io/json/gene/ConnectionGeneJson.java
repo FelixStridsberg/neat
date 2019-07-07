@@ -1,4 +1,4 @@
-package com.vadeen.neat.io.json;
+package com.vadeen.neat.io.json.gene;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -11,7 +11,7 @@ import com.vadeen.neat.gene.GeneFactory;
  * This is to abstract the actual implementation from the json.
  */
 @JsonSerialize
-class ConnectionJson {
+public class ConnectionGeneJson {
     @JsonProperty
     private int innovation;
 
@@ -27,8 +27,8 @@ class ConnectionJson {
     @JsonProperty
     private boolean expressed;
 
-    public static ConnectionJson of(ConnectionGene c) {
-        ConnectionJson json = new ConnectionJson();
+    public static ConnectionGeneJson of(ConnectionGene c) {
+        ConnectionGeneJson json = new ConnectionGeneJson();
         json.innovation = c.getInnovation();
         json.in = c.getIn();
         json.out = c.getOut();

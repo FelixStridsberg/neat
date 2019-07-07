@@ -1,8 +1,9 @@
-package com.vadeen.neat.io.json;
+package com.vadeen.neat.io.json.generation;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.vadeen.neat.gene.GeneFactory;
 import com.vadeen.neat.generation.Generation;
+import com.vadeen.neat.io.json.species.SpeciesJson;
 import com.vadeen.neat.species.Species;
 
 import java.util.List;

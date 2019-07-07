@@ -8,7 +8,13 @@ import com.vadeen.neat.generation.Generation;
 import com.vadeen.neat.generation.GenerationEvaluator;
 import com.vadeen.neat.generation.GenerationFactory;
 import com.vadeen.neat.genome.*;
-import com.vadeen.neat.io.json.neat.*;
+import com.vadeen.neat.io.json.generation.GenerationEvaluatorJson;
+import com.vadeen.neat.io.json.generation.GenerationFactoryJson;
+import com.vadeen.neat.io.json.generation.GenerationJson;
+import com.vadeen.neat.io.json.genome.GenomeComparatorJson;
+import com.vadeen.neat.io.json.genome.GenomeFactoryJson;
+import com.vadeen.neat.io.json.genome.GenomeMutatorJson;
+import com.vadeen.neat.io.json.species.SpeciesFactoryJson;
 import com.vadeen.neat.species.SpeciesFactory;
 
 public class NeatJson {
