@@ -11,6 +11,9 @@ import java.util.stream.Collectors;
 public class GenerationJson {
 
     @JsonProperty
+    private int generationNumber;
+
+    @JsonProperty
     private List<SpeciesJson> species;
 
     public static GenerationJson of(Generation generation) {
@@ -19,6 +22,7 @@ public class GenerationJson {
                 .collect(Collectors.toList());
 
         GenerationJson json = new GenerationJson();
+        json.generationNumber = generation.getGenerationNumber();
         json.species = speciesJson;
         return json;
     }
@@ -28,6 +32,6 @@ public class GenerationJson {
                 .map(s -> s.toSpecies(geneFactory))
                 .collect(Collectors.toList());
 
-        return new Generation(species);
+        return new Generation(generationNumber, species);
     }
 }

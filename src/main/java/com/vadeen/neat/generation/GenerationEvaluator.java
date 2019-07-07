@@ -39,6 +39,11 @@ public class GenerationEvaluator {
     private int refocusThreshold = 20;
 
     /**
+     * Increases for every new generation evolved.
+     */
+    private int generationCounter = 0;
+
+    /**
      * @param evaluator Evaluator to evaluate fitness of each genome.
      * @param generation First generation.
      */
@@ -69,6 +74,8 @@ public class GenerationEvaluator {
         // If generation did not improve in fitness. Increase counter.
         if (oldGeneration.getBestGenome().getFitness() == generation.getBestGenome().getFitness())
             unimprovedCount++;
+
+        generation.setGenerationNumber(++generationCounter);
 
         return generation;
     }
@@ -107,6 +114,18 @@ public class GenerationEvaluator {
 
     public void setRefocusThreshold(int refocusThreshold) {
         this.refocusThreshold = refocusThreshold;
+    }
+
+    public void setGeneration(Generation generation) {
+        this.generation = generation;
+    }
+
+    public int getGenerationCounter() {
+        return generationCounter;
+    }
+
+    public void setGenerationCounter(int generationCounter) {
+        this.generationCounter = generationCounter;
     }
 
     /**

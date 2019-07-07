@@ -11,6 +11,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 
+import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.fail;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -61,8 +62,11 @@ public class XOR {
 
         // Loop through generations until we have a result, or give up.
         Generation generation = null;
-        for (int i = 0; i < MAX_GENERATIONS; i++) {
+        for (int i = 1; i < MAX_GENERATIONS; i++) {
             generation = neat.evolve();
+
+            // Assert generation number.
+            assertEquals(i, generation.getGenerationNumber());
 
             Genome bestGenome = generation.getBestGenome();
 
@@ -73,7 +77,7 @@ public class XOR {
             if (bestGenome.getFitness() == 4.0f)
                 break;
 
-            if (i == MAX_GENERATIONS - 1)
+            if (generation.getGenerationNumber() == MAX_GENERATIONS - 1)
                 fail("Did not finish XOR in " + MAX_GENERATIONS + " generations. WTF, over?");
         }
 

@@ -24,10 +24,10 @@ public class VisualPanel extends JPanel {
         add(statsPanel);
     }
 
-    public void addGeneration(int gen, Generation g) {
+    public void addGeneration(Generation g) {
         stats.addGeneration(g);
         genomePanel.setGenome(g.getBestGenome());
-        infoPanel.setGeneration(gen, g);
+        infoPanel.setGeneration(g);
         repaint();
     }
 }
