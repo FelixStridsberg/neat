@@ -1,4 +1,4 @@
-package com.vadeen.neat.io.json;
+package com.vadeen.neat.io.json.genome;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -6,6 +6,8 @@ import com.vadeen.neat.gene.ConnectionGene;
 import com.vadeen.neat.gene.GeneFactory;
 import com.vadeen.neat.gene.NodeGene;
 import com.vadeen.neat.genome.Genome;
+import com.vadeen.neat.io.json.gene.ConnectionGeneJson;
+import com.vadeen.neat.io.json.gene.NodeGeneJson;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -26,22 +28,22 @@ public class GenomeJson {
     private float fitness;
 
     @JsonProperty
-    private List<NodeJson> nodes;
+    private List<NodeGeneJson> nodes;
 
     @JsonProperty
-    private List<ConnectionJson> connections;
+    private List<ConnectionGeneJson> connections;
 
     public static GenomeJson of(Genome genome) {
         GenomeJson json = new GenomeJson();
         json.id = genome.id;
         json.fitness = genome.getFitness();
         json.nodes = genome.getNodes().values().stream()
-                .map(NodeJson::of)
+                .map(NodeGeneJson::of)
                 .collect(Collectors.toList());
 
         json.connections = genome.getConnections().values().stream()
                 .sorted(Comparator.comparing(ConnectionGene::getInnovation))
-                .map(ConnectionJson::of)
+                .map(ConnectionGeneJson::of)
                 .collect(Collectors.toList());
 
         return json;
