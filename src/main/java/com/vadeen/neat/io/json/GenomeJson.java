@@ -36,8 +36,8 @@ public class GenomeJson {
                 .collect(Collectors.toList());
 
         json.connections = genome.getConnections().values().stream()
-                .map(ConnectionJson::new)
-                .sorted(Comparator.comparing(g -> g.innovation))
+                .sorted(Comparator.comparing(ConnectionGene::getInnovation))
+                .map(ConnectionJson::of)
                 .collect(Collectors.toList());
 
         return json;
@@ -57,7 +57,7 @@ public class GenomeJson {
                 .collect(Collectors.toList());
 
         List<ConnectionGene> connections = this.connections.stream()
-                .map(j -> geneFactory.createConnection(j.in, j.out, j.weight, j.expressed, j.innovation))
+                .map(j -> j.toConnection(geneFactory))
                 .collect(Collectors.toList());
 
         return Genome.create(connections, nodes);

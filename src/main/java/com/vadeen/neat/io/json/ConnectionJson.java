@@ -3,6 +3,7 @@ package com.vadeen.neat.io.json;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.vadeen.neat.gene.ConnectionGene;
+import com.vadeen.neat.gene.GeneFactory;
 
 /**
  * JSON representation of a ConnectionGene.
@@ -12,27 +13,31 @@ import com.vadeen.neat.gene.ConnectionGene;
 @JsonSerialize
 class ConnectionJson {
     @JsonProperty
-    int innovation;
+    private int innovation;
 
     @JsonProperty
-    int in;
+    private int in;
 
     @JsonProperty
-    int out;
+    private int out;
 
     @JsonProperty
-    float weight;
+    private float weight;
 
     @JsonProperty
-    boolean expressed;
+    private boolean expressed;
 
-    public ConnectionJson() {}
+    public static ConnectionJson of(ConnectionGene c) {
+        ConnectionJson json = new ConnectionJson();
+        json.innovation = c.getInnovation();
+        json.in = c.getIn();
+        json.out = c.getOut();
+        json.weight = c.getWeight();
+        json.expressed = c.isExpressed();
+        return json;
+    }
 
-    public ConnectionJson(ConnectionGene c) {
-        this.innovation = c.getInnovation();
-        this.in = c.getIn();
-        this.out = c.getOut();
-        this.weight = c.getWeight();
-        this.expressed = c.isExpressed();
+    public ConnectionGene toConnection(GeneFactory geneFactory) {
+        return geneFactory.createConnection(in, out, weight, expressed, innovation);
     }
 }
