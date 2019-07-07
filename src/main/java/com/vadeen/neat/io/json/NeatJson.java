@@ -8,6 +8,7 @@ import com.vadeen.neat.generation.Generation;
 import com.vadeen.neat.generation.GenerationEvaluator;
 import com.vadeen.neat.generation.GenerationFactory;
 import com.vadeen.neat.genome.*;
+import com.vadeen.neat.io.json.gene.GeneFactoryJson;
 import com.vadeen.neat.io.json.generation.GenerationEvaluatorJson;
 import com.vadeen.neat.io.json.generation.GenerationFactoryJson;
 import com.vadeen.neat.io.json.generation.GenerationJson;
@@ -37,6 +38,9 @@ public class NeatJson {
     private GenerationEvaluatorJson generationEvaluator;
 
     @JsonProperty
+    private GeneFactoryJson geneFactory;
+
+    @JsonProperty
     private GenerationJson generation;
 
     public static NeatJson of(Neat neat) {
@@ -46,7 +50,7 @@ public class NeatJson {
         SpeciesFactoryJson speciesFactoryJson = SpeciesFactoryJson.of(neat.getSpeciesFactory());
         GenerationFactoryJson generationFactoryJson = GenerationFactoryJson.of(neat.getGenerationFactory());
         GenerationEvaluatorJson generationEvaluatorJson = GenerationEvaluatorJson.of(neat.getGenerationEvaluator());
-
+        GeneFactoryJson geneFactoryJson = GeneFactoryJson.of(neat.getGeneFactory());
         GenerationJson generationJson = GenerationJson.of(neat.getGenerationEvaluator().getGeneration());
 
 
@@ -57,15 +61,16 @@ public class NeatJson {
         neatJson.speciesFactory = speciesFactoryJson;
         neatJson.generationFactory = generationFactoryJson;
         neatJson.generationEvaluator = generationEvaluatorJson;
+        neatJson.geneFactory = geneFactoryJson;
         neatJson.generation = generationJson;
         return neatJson;
     }
 
     public static Neat toNeat(GenomeEvaluator evaluator, NeatJson json) {
         Random random = new Random();
-        GeneFactory geneFactory = new GeneFactory();
 
         GenomeValidator validator = new GenomeValidator();
+        GeneFactory geneFactory = json.geneFactory.toGeneFactory();
         GenomeMutator mutator = json.genomeMutator.toGenomeMutator(random, geneFactory);
         GenomeFactory genomeFactory = json.genomeFactory.toGenomeFactory(mutator, validator, random);
         GenomeComparator genomeComparator = json.genomeComparator.toGenomeComparator();
@@ -85,6 +90,7 @@ public class NeatJson {
         neat.setSpeciesFactory(speciesFactory);
         neat.setGenerationFactory(generationFactory);
         neat.setGenerationEvaluator(generationEvaluator);
+        neat.setGeneFactory(geneFactory);
         return neat;
     }
 }
