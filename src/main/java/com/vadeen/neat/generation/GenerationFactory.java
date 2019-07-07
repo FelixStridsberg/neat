@@ -59,7 +59,7 @@ public class GenerationFactory {
         return breedAndMutateProportionally(old, speciesProportions);
     }
 
-        /**
+    /**
      * Creates a new generation containing only the best `refocusSpeciesCount` species.
      */
     public Generation refocus(Generation generation) {
