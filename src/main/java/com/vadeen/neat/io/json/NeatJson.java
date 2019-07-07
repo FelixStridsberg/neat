@@ -39,7 +39,7 @@ public class NeatJson {
     @JsonProperty
     private GenerationJson generation;
 
-    public static NeatJson fromNeat(Neat neat) {
+    public static NeatJson of(Neat neat) {
         GenomeMutatorJson genomeMutatorJson = GenomeMutatorJson.of(neat.getMutator());
         GenomeFactoryJson genomeFactoryJson = GenomeFactoryJson.of(neat.getGenomeFactory());
         GenomeComparatorJson genomeComparatorJson = GenomeComparatorJson.of(neat.getGenomeComparator());
