@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.vadeen.neat.Neat;
 import com.vadeen.neat.Random;
 import com.vadeen.neat.gene.GeneFactory;
+import com.vadeen.neat.generation.Generation;
 import com.vadeen.neat.generation.GenerationEvaluator;
 import com.vadeen.neat.generation.GenerationFactory;
 import com.vadeen.neat.genome.*;
@@ -11,13 +12,6 @@ import com.vadeen.neat.io.json.neat.*;
 import com.vadeen.neat.species.SpeciesFactory;
 
 public class NeatJson {
-
-    @JsonProperty
-    private int inputs;
-
-    @JsonProperty
-    private int outputs;
-
     @JsonProperty
     private GenomeMutatorJson genomeMutator;
 
@@ -51,8 +45,6 @@ public class NeatJson {
 
 
         NeatJson neatJson = new NeatJson();
-        neatJson.inputs = neat.getInputs();
-        neatJson.outputs = neat.getOutputs();
         neatJson.genomeMutator = genomeMutatorJson;
         neatJson.genomeFactory = genomeFactoryJson;
         neatJson.genomeComparator = genomeComparatorJson;
@@ -73,9 +65,10 @@ public class NeatJson {
         GenomeComparator genomeComparator = json.genomeComparator.toGenomeComparator();
         SpeciesFactory speciesFactory = json.speciesFactory.toSpeciesFactory(genomeComparator);
         GenerationFactory generationFactory = json.generationFactory.toGenerationFactor(genomeFactory, speciesFactory);
+        Generation generation = json.generation.toGeneration(geneFactory);
 
 
-        Neat neat = Neat.create(evaluator, json.inputs, json.outputs);
+        Neat neat = Neat.create(evaluator, generation);
 
         GenerationEvaluator generationEvaluator = json.generationEvaluator.toGenerationEvaluator(
                 evaluator, generationFactory, neat.getGenerationEvaluator().getGeneration());

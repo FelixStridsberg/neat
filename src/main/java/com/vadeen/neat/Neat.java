@@ -19,10 +19,6 @@ import java.util.Collections;
  * Or even swap em out.
  */
 public class Neat {
-
-    private int inputs;
-    private int outputs;
-
     private Random random;
     private GeneFactory geneFactory;
     private GenomeMutator mutator;
@@ -47,11 +43,24 @@ public class Neat {
         GenerationFactory generationFactory = new GenerationFactory(genomeFactory, speciesFactory);
         GenerationEvaluator generationEvaluator = new GenerationEvaluator(evaluator, generationFactory, firstGeneration);
 
-        Neat neat = new Neat(random, geneFactory, mutator, validator, genomeFactory,
+        return new Neat(random, geneFactory, mutator, validator, genomeFactory,
                 genomeComparator, speciesFactory, generationFactory, generationEvaluator);
-        neat.inputs = inputs;
-        neat.outputs = outputs;
-        return neat;
+    }
+
+    public static Neat create(GenomeEvaluator evaluator, Generation generation) {
+        Random random = new Random(System.currentTimeMillis());
+        GeneFactory geneFactory = new GeneFactory();
+        GenomeMutator mutator = new GenomeMutator(random, geneFactory);
+        GenomeValidator validator = new GenomeValidator();
+        GenomeFactory genomeFactory = new GenomeFactory(mutator, validator, random);
+        GenomeComparator genomeComparator = new GenomeComparator();
+        SpeciesFactory speciesFactory = new SpeciesFactory(genomeComparator);
+
+        GenerationFactory generationFactory = new GenerationFactory(genomeFactory, speciesFactory);
+        GenerationEvaluator generationEvaluator = new GenerationEvaluator(evaluator, generationFactory, generation);
+
+        return new Neat(random, geneFactory, mutator, validator, genomeFactory,
+                genomeComparator, speciesFactory, generationFactory, generationEvaluator);
     }
 
     // Ridiculous constructor I know, but this is just a convenience class so you don't have to create all of these.
@@ -71,14 +80,6 @@ public class Neat {
 
     public Generation evolve() {
         return generationEvaluator.nextGeneration();
-    }
-
-    public int getInputs() {
-        return inputs;
-    }
-
-    public int getOutputs() {
-        return outputs;
     }
 
     public Random getRandom() {
