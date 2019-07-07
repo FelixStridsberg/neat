@@ -18,13 +18,13 @@ public class GenomeDiff {
     private Genome right;
 
     /**
-     * Disjoint genes are within the range fromGenome the other genome, but missing.
+     * Disjoint genes are within the range of the other genome, but missing.
      */
     private List<ConnectionGene> disjointLeft = new LinkedList<>();
     private List<ConnectionGene> disjointRight = new LinkedList<>();
 
     /**
-     * Excess genes are outside the range fromGenome the other genome.
+     * Excess genes are outside the range of the other genome.
      */
     private List<ConnectionGene> excessLeft = new LinkedList<>();
     private List<ConnectionGene> excessRight = new LinkedList<>();
