@@ -159,6 +159,19 @@ public class Genome extends LevelTree<ConnectionGene, NodeGene> {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Genome genome = (Genome) o;
+        return id == genome.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
     public String toString() {
         return String.format("Genome(%d,cons=%d,nodes=%d,fit=%f)", id, connections.size(), nodes.size(), fitness);
     }
