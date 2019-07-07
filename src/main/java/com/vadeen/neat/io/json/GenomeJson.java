@@ -32,7 +32,7 @@ public class GenomeJson {
         GenomeJson json = new GenomeJson();
         json.id = genome.id;
         json.nodes = genome.getNodes().values().stream()
-                .map(NodeJson::new)
+                .map(NodeJson::of)
                 .collect(Collectors.toList());
 
         json.connections = genome.getConnections().values().stream()
@@ -53,7 +53,7 @@ public class GenomeJson {
 
     public Genome toGenome(GeneFactory geneFactory) {
         List<NodeGene> nodes = this.nodes.stream()
-                .map(j -> geneFactory.createNode(j.type, j.id))
+                .map(j -> j.toNode(geneFactory))
                 .collect(Collectors.toList());
 
         List<ConnectionGene> connections = this.connections.stream()

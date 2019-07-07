@@ -64,7 +64,7 @@ public class NeatJsonTest {
 
 
         // Write json
-        NeatJson neatJson = NeatJson.fromNeat(neat);
+        NeatJson neatJson = NeatJson.of(neat);
         String json = mapper.writeValueAsString(neatJson);
 
         // Read json
