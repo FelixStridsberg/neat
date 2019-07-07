@@ -7,7 +7,6 @@ import java.awt.*;
 
 public class InfoPanel extends JPanel {
 
-    private int gen = 0;
     private Generation generation;
 
     @Override
@@ -22,13 +21,12 @@ public class InfoPanel extends JPanel {
 
         Font f = g2.getFont();
         g2.setFont(f.deriveFont(16.0f));
-        g2.drawString("Generation: " + gen, 10, 20);
+        g2.drawString("Generation: " + generation.getGenerationNumber(), 10, 20);
         g2.drawString(String.format("Best fitness: %.01f", generation.getBestGenome().getFitness()), 10, 38);
         g2.drawString("Species: " + generation.getSpecies().size(), 10, 56);
     }
 
-    public void setGeneration(int gen, Generation g) {
-        this.gen = gen;
+    public void setGeneration(Generation g) {
         this.generation = g;
     }
 }

@@ -13,10 +13,14 @@ public class GenerationEvaluatorJson {
     @JsonProperty
     private int refocusThreshold;
 
+    @JsonProperty
+    private int generationCounter;
+
     public static GenerationEvaluatorJson of(GenerationEvaluator evaluator) {
         GenerationEvaluatorJson json = new GenerationEvaluatorJson();
         json.unimprovedCount = evaluator.getUnimprovedCount();
         json.refocusThreshold = evaluator.getRefocusThreshold();
+        json.generationCounter = evaluator.getGenerationCounter();
         return json;
     }
 
@@ -25,6 +29,7 @@ public class GenerationEvaluatorJson {
         GenerationEvaluator evaluator = new GenerationEvaluator(genomeEvaluator, generationFactory, generation);
         evaluator.setUnimprovedCount(unimprovedCount);
         evaluator.setRefocusThreshold(refocusThreshold);
+        evaluator.setGenerationCounter(generationCounter);
         return evaluator;
     }
 }

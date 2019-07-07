@@ -59,6 +59,7 @@ public class NeatJsonTest {
         GenerationEvaluator generationEvaluator = neat.getGenerationEvaluator();
         generationEvaluator.setUnimprovedCount(6001);
         generationEvaluator.setRefocusThreshold(6002);
+        generationEvaluator.setGenerationCounter(6003);
 
         // Genome in generation
         neat.getGenerationEvaluator().getGeneration().getBestGenome().setFitness(100);
@@ -110,6 +111,7 @@ public class NeatJsonTest {
         GenerationEvaluator readGenerationEvaluator = readNeat.getGenerationEvaluator();
         assertEquals(readGenerationEvaluator.getUnimprovedCount(), 6001);
         assertEquals(readGenerationEvaluator.getRefocusThreshold(), 6002);
+        assertEquals(readGenerationEvaluator.getGenerationCounter(), 6003);
 
         // Species
         assertEquals(readGenerationEvaluator.getGeneration().getSpecies().size(), 1);
