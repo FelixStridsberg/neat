@@ -7,6 +7,7 @@ import com.vadeen.neat.gene.GeneFactory;
 import com.vadeen.neat.gene.NodeGene;
 import com.vadeen.neat.genome.Genome;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,15 +20,15 @@ import java.util.stream.Collectors;
 @JsonSerialize
 public class GenomeJson {
     @JsonProperty
-    int id;
+    private int id;
 
     @JsonProperty
-    List<NodeJson> nodes;
+    private List<NodeJson> nodes;
 
     @JsonProperty
-    List<ConnectionJson> connections;
+    private List<ConnectionJson> connections;
 
-    public static GenomeJson fromGenome(Genome genome) {
+    public static GenomeJson of(Genome genome) {
         GenomeJson json = new GenomeJson();
         json.id = genome.id;
         json.nodes = genome.getNodes().values().stream()
@@ -42,12 +43,20 @@ public class GenomeJson {
         return json;
     }
 
-    public static Genome toGenome(GeneFactory geneFactory, GenomeJson json) {
-        List<NodeGene> nodes = json.nodes.stream()
+    public static List<GenomeJson> of(List<Genome> genome) {
+        List<GenomeJson> json = new ArrayList<>();
+        for (Genome g : genome) {
+            json.add(of(g));
+        }
+        return json;
+    }
+
+    public Genome toGenome(GeneFactory geneFactory) {
+        List<NodeGene> nodes = this.nodes.stream()
                 .map(j -> geneFactory.createNode(j.type, j.id))
                 .collect(Collectors.toList());
 
-        List<ConnectionGene> connections = json.connections.stream()
+        List<ConnectionGene> connections = this.connections.stream()
                 .map(j -> geneFactory.createConnection(j.in, j.out, j.weight, j.expressed, j.innovation))
                 .collect(Collectors.toList());
 

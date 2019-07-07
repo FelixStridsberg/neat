@@ -4,11 +4,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.vadeen.neat.Neat;
 import com.vadeen.neat.Random;
 import com.vadeen.neat.gene.GeneFactory;
+import com.vadeen.neat.generation.Generation;
 import com.vadeen.neat.generation.GenerationEvaluator;
 import com.vadeen.neat.generation.GenerationFactory;
 import com.vadeen.neat.genome.*;
 import com.vadeen.neat.io.json.neat.*;
+import com.vadeen.neat.species.Species;
 import com.vadeen.neat.species.SpeciesFactory;
+
+import java.util.List;
 
 public class NeatJson {
 
@@ -36,6 +40,9 @@ public class NeatJson {
     @JsonProperty
     private GenerationEvaluatorJson generationEvaluator;
 
+    @JsonProperty
+    private GenerationJson generation;
+
     public static NeatJson fromNeat(Neat neat) {
         GenomeMutatorJson genomeMutatorJson = GenomeMutatorJson.of(neat.getMutator());
         GenomeFactoryJson genomeFactoryJson = GenomeFactoryJson.of(neat.getGenomeFactory());
@@ -43,6 +50,9 @@ public class NeatJson {
         SpeciesFactoryJson speciesFactoryJson = SpeciesFactoryJson.of(neat.getSpeciesFactory());
         GenerationFactoryJson generationFactoryJson = GenerationFactoryJson.of(neat.getGenerationFactory());
         GenerationEvaluatorJson generationEvaluatorJson = GenerationEvaluatorJson.of(neat.getGenerationEvaluator());
+
+        GenerationJson generationJson = GenerationJson.fromGeneration(neat.getGenerationEvaluator().getGeneration());
+
 
         NeatJson neatJson = new NeatJson();
         neatJson.inputs = neat.getInputs();
@@ -53,6 +63,7 @@ public class NeatJson {
         neatJson.speciesFactory = speciesFactoryJson;
         neatJson.generationFactory = generationFactoryJson;
         neatJson.generationEvaluator = generationEvaluatorJson;
+        neatJson.generation = generationJson;
         return neatJson;
     }
 

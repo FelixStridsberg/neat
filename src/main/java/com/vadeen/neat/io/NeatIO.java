@@ -7,15 +7,10 @@ import com.vadeen.neat.generation.Generation;
 import com.vadeen.neat.genome.Genome;
 import com.vadeen.neat.io.json.GenerationJson;
 import com.vadeen.neat.io.json.GenomeJson;
-import com.vadeen.neat.io.json.NeatJson;
 import com.vadeen.neat.io.json.PrettyPrinter;
-import com.vadeen.neat.species.Species;
-import com.vadeen.neat.species.SpeciesFactory;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Reads and writes genomes to json files.
@@ -48,25 +43,17 @@ public class NeatIO {
         ObjectMapper mapper = new ObjectMapper();
 
         GenomeJson json = mapper.readValue(file, GenomeJson.class);
-        return GenomeJson.toGenome(geneFactory, json);
+        return json.toGenome(geneFactory);
     }
 
-    public static Generation readGeneration(File file, GeneFactory geneFactory, SpeciesFactory speciesFactory) throws IOException {
+    public static Generation readGeneration(File file, GeneFactory geneFactory) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-
-        List<Genome> genomes = new ArrayList<>();
-
         GenerationJson json = mapper.readValue(file, GenerationJson.class);
-        for (GenomeJson genomeJson : json.getGenomes()) {
-            genomes.add(GenomeJson.toGenome(geneFactory, genomeJson));
-        }
-
-        List<Species> species = speciesFactory.generate(genomes);
-        return new Generation(species);
+        return json.toGeneration(geneFactory);
     }
 
     public static void write(File file, Genome genome) throws IOException {
-        GenomeJson json = GenomeJson.fromGenome(genome);
+        GenomeJson json = GenomeJson.of(genome);
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.setDefaultPrettyPrinter(new PrettyPrinter(1));
