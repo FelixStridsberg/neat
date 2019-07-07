@@ -247,7 +247,7 @@ public class GenomeFactory {
     }
 
     /**
-     * Returns a random number fromGenome random selected elements from left and right.
+     * Returns a random number of random selected elements from left and right.
      */
     private List<ConnectionGene> random(List<ConnectionGene> left, List<ConnectionGene> right) {
         List<ConnectionGene> all = new LinkedList<>(left);

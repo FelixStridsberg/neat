@@ -80,7 +80,7 @@ public class GenomeMutator {
     }
 
     /**
-     * Randomly mutates a weight fromGenome a random connection.
+     * Randomly mutates a weight of a random connection.
      */
     public void weightMutation(Genome genome) {
         genome.getConnections().values().forEach(c -> {
@@ -134,7 +134,7 @@ public class GenomeMutator {
 
     /**
      * Picks a random connection and ads a new node to it. The existing connection is kept but disabled.
-     * Input connection to the new node get weight 1.0f. Output connection gets weight fromGenome the disabled connection.
+     * Input connection to the new node get weight 1.0f. Output connection gets weight of the disabled connection.
      */
     public void addNodeMutation(Genome genome) {
         Integer[] connectionIds = genome.getConnectionIds();

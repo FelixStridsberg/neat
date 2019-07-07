@@ -15,7 +15,7 @@ public class Random extends java.util.Random {
     }
 
     /**
-     * Returns an integer with a higher probability fromGenome getting a low value.
+     * Returns an integer with a higher probability of getting a low value.
      */
     public int nextLowBiasedInt(int bound) {
         return (int)((Math.pow(nextFloat(),BIAS_FACTOR))*bound);
