@@ -2,6 +2,7 @@ package com.vadeen.neat.io.json;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.vadeen.neat.gene.GeneFactory;
 import com.vadeen.neat.gene.NodeGene;
 
 /**
@@ -12,15 +13,19 @@ import com.vadeen.neat.gene.NodeGene;
 @JsonSerialize
 class NodeJson {
     @JsonProperty
-    int id;
+    private int id;
 
     @JsonProperty
-    NodeGene.Type type;
+    private NodeGene.Type type;
 
-    NodeJson() {}
+    public static NodeJson of(NodeGene n) {
+        NodeJson json = new NodeJson();
+        json.id = n.getId();
+        json.type = n.getType();
+        return json;
+    }
 
-    NodeJson(NodeGene n) {
-        this.id = n.getId();
-        this.type = n.getType();
+    public NodeGene toNode(GeneFactory geneFactory) {
+        return geneFactory.createNode(type, id);
     }
 }
