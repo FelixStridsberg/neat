@@ -61,7 +61,7 @@ public class NeatIO {
     }
 
     public static void write(File file, Generation generation) throws IOException {
-        GenerationJson json = GenerationJson.fromGeneration(generation);
+        GenerationJson json = GenerationJson.of(generation);
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.setDefaultPrettyPrinter(new PrettyPrinter(3));

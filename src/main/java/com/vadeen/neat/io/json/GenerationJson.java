@@ -15,7 +15,7 @@ public class GenerationJson {
     @JsonProperty
     List<SpeciesJson> species;
 
-    public static GenerationJson fromGeneration(Generation generation) {
+    public static GenerationJson of(Generation generation) {
         List<SpeciesJson> speciesJson = generation.getSpecies().stream()
                 .map(SpeciesJson::of)
                 .collect(Collectors.toList());
