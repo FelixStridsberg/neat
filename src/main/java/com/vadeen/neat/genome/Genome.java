@@ -54,7 +54,20 @@ public class Genome extends LevelTree<ConnectionGene, NodeGene> {
      * @param nodes Node to add to the genome.
      */
     public static Genome create(Collection<ConnectionGene> connections, Collection<NodeGene> nodes) {
-        Genome genome = new Genome(++idCounter);
+        return create(++idCounter, connections, nodes);
+    }
+
+    /**
+     * Creates a new genome from connections and nodes.
+     *
+     * @param connections Connections to add to the genome.
+     * @param nodes Node to add to the genome.
+     */
+    public static Genome create(int id, Collection<ConnectionGene> connections, Collection<NodeGene> nodes) {
+        Genome genome = new Genome(id);
+
+        if (id >= idCounter)
+            idCounter = id;
 
         for (NodeGene node : nodes)
             genome.addNode(node);
