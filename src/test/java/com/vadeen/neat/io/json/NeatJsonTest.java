@@ -3,6 +3,7 @@ package com.vadeen.neat.io.json;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vadeen.neat.Neat;
+import com.vadeen.neat.generation.Generation;
 import com.vadeen.neat.generation.GenerationEvaluator;
 import com.vadeen.neat.generation.GenerationFactory;
 import com.vadeen.neat.genome.Genome;
@@ -61,6 +62,8 @@ public class NeatJsonTest {
         generationEvaluator.setUnimprovedCount(6001);
         generationEvaluator.setRefocusThreshold(6002);
 
+        // Genome in generation
+        neat.getGenerationEvaluator().getGeneration().getBestGenome().setFitness(100);
 
 
         // Write json
@@ -118,5 +121,6 @@ public class NeatJsonTest {
         Genome readGenome = readGenerationEvaluator.getGeneration().getSpecies().get(0).getGenomes().get(0);
         assertEquals(readGenome.getInputNodes().size(), 2);
         assertEquals(readGenome.getOutputNodes().size(), 1);
+        assertEquals(readGenome.getFitness(), 100.0f, 0.0f);
     }
 }
