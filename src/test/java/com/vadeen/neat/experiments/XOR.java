@@ -83,16 +83,16 @@ public class XOR {
         Genome bestGenome = generation.getBestGenome();
         GenomePropagator p = new GenomePropagator(bestGenome);
 
-        assertThat(found(p.propagate(Arrays.asList(1.0f, 1.0f)).get(0)), is(0.0f));
-        assertThat(found(p.propagate(Arrays.asList(1.0f, 0.0f)).get(0)), is(1.0f));
-        assertThat(found(p.propagate(Arrays.asList(0.0f, 1.0f)).get(0)), is(1.0f));
-        assertThat(found(p.propagate(Arrays.asList(0.0f, 0.0f)).get(0)), is(0.0f));
+        assertThat(round(p.propagate(Arrays.asList(1.0f, 1.0f)).get(0)), is(0.0f));
+        assertThat(round(p.propagate(Arrays.asList(1.0f, 0.0f)).get(0)), is(1.0f));
+        assertThat(round(p.propagate(Arrays.asList(0.0f, 1.0f)).get(0)), is(1.0f));
+        assertThat(round(p.propagate(Arrays.asList(0.0f, 0.0f)).get(0)), is(0.0f));
     }
 
     /**
      * Round to 3 decimals.
      */
-    private float found(float v) {
+    private float round(float v) {
         return (float)Math.round(v * 1000.0f) / 1000.0f;
     }
 }
