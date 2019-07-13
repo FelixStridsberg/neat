@@ -7,6 +7,33 @@
     <groupId>com.vadeen</groupId>
     <artifactId>neat</artifactId>
     <version>0.2.0</version>
+    <packaging>jar</packaging>
+
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>Implementation of the NEAT algorithm.</description>
+    <url>https://github.com/FelixStridsberg/neat</url>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Felix Stridsberg</name>
+            <email>felix.stridsberg@gmail.com</email>
+            <organization>Vadeen</organization>
+            <organizationUrl>https://www.vadeen.com</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/FelixStridsberg/neat.git</connection>
+        <developerConnection>scm:git:ssh://github.com:FelixStridsberg/neat.git</developerConnection>
+        <url>http://github.com/FelixStridsberg/neat/tree/master</url>
+    </scm>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
