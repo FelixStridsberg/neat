@@ -2,6 +2,7 @@ package com.vadeen.neat.genome;
 
 import com.vadeen.neat.Random;
 import com.vadeen.neat.gene.GeneFactory;
+import com.vadeen.neat.gene.NodeGene;
 import com.vadeen.neat.io.NeatIO;
 import org.junit.Test;
 
@@ -65,8 +66,10 @@ public class GenomeMutatorTest {
         assertThat(genome.getNodes().size(), is(5));
         assertThat(genome.getConnections().size(), is(6));
 
-        // Add connection mutation between node 3 and 5 (position 2 and 4 in array)
-        when(mockedRandom.nextInt(anyInt())).thenReturn(2, 4);
+        // Add connection mutation between node 3 and 5
+        int node3Index = genome.getNodeIds().indexOf(3);
+        int node5Index = genome.getFilteredNodeIds(NodeGene.Type.INPUT).indexOf(5);
+        when(mockedRandom.nextInt(anyInt())).thenReturn(node3Index, node5Index);
 
         // Perform
         mutator.addConnectionMutation(genome);
@@ -114,34 +117,6 @@ public class GenomeMutatorTest {
     }
 
     @Test
-    public void testConnectionMutationSame() throws IOException {
-        Random mockedRandom = mock(Random.class);
-        GenomeValidator validator = new GenomeValidator();
-        GenomeMutator mutator = new GenomeMutator(mockedRandom, new GeneFactory());
-
-        mutator.setConnectionMutationProbability(1.0f);
-        mutator.setWeightMutationProbability(0.0f);
-        mutator.setNodeMutationProbability(0.0f);
-
-        Genome genome = NeatIO.genomeFromResource("genomes/stanley_fig2.json");
-
-        assertThat(genome.getNodes().size(), is(5));
-        assertThat(genome.getConnections().size(), is(6));
-
-        // Add connection mutation between same node
-        when(mockedRandom.nextInt(anyInt())).thenReturn(2, 2);
-
-        // Perform
-        mutator.addConnectionMutation(genome);
-
-        // Verify that no connection was added
-        assertThat(genome.getNodes().size(), is(5));
-        assertThat(genome.getConnections().size(), is(6));
-
-        assertThat(validator.validate(genome), is(true));
-    }
-
-    @Test
     public void testConnectionMutationExisting() throws IOException {
         Random mockedRandom = mock(Random.class);
         GenomeValidator validator = new GenomeValidator();
@@ -157,7 +132,9 @@ public class GenomeMutatorTest {
         assertThat(genome.getConnections().size(), is(6));
 
         // Add connection mutation between node 1 and 4 (position 0 and 3 in array)
-        when(mockedRandom.nextInt(anyInt())).thenReturn(0, 3);
+        int node1Index = genome.getNodeIds().indexOf(1);
+        int node4Index = genome.getFilteredNodeIds(NodeGene.Type.INPUT).indexOf(4);
+        when(mockedRandom.nextInt(anyInt())).thenReturn(node1Index, node4Index);
 
         // Perform
         mutator.addConnectionMutation(genome);

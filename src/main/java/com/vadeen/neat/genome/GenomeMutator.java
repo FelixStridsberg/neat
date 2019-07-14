@@ -5,6 +5,9 @@ import com.vadeen.neat.gene.ConnectionGene;
 import com.vadeen.neat.gene.GeneFactory;
 import com.vadeen.neat.gene.NodeGene;
 
+import java.util.List;
+import java.util.Set;
+
 /**
  * The genome mutator mutate genomes to change their network. There are multiple ways a genome can be mutated, which way
  * is selected is randomized according to the probability suffixes settings. How severe the mutation is are configured
@@ -99,15 +102,15 @@ public class GenomeMutator {
      * This mutation might not do anything in case the selected random nodes already have a connection or are the same.
      */
     public void addConnectionMutation(Genome genome) {
-        Integer[] nodeIds = genome.getNodeIds();
-        int id1 = nodeIds[random.nextInt(nodeIds.length)];
-        int id2 = nodeIds[random.nextInt(nodeIds.length)];
-
-        // Same node, mutation failed.
-        if (id1 == id2)
-            return;
-
+        List<Integer> nodeIds = genome.getNodeIds();
+        int id1 = nodeIds.remove(random.nextInt(nodeIds.size()));
         NodeGene node1 = genome.getNode(id1);
+
+        // If node1 is not HIDDEN, node2 cannot be of the same type. (in -> in and out -> out connections are forbidden)
+        if (node1.getType() != NodeGene.Type.HIDDEN)
+            nodeIds = genome.getFilteredNodeIds(node1.getType());
+
+        int id2 = nodeIds.get(random.nextInt(nodeIds.size()));
         NodeGene node2 = genome.getNode(id2);
 
         // Make sure we add connection in the right direction.
@@ -116,10 +119,6 @@ public class GenomeMutator {
             node1 = node2;
             node2 = tmpNode;
         }
-
-        // Do not allow connections between OUTPUT nodes or INPUT nodes.
-        if (node1.getType().getOrder() == node2.getType().getOrder() && node1.getType() != NodeGene.Type.HIDDEN)
-            return;
 
         // If connection already exists.
         if (genome.hasConnection(node1.getId(), node2.getId()))
