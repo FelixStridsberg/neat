@@ -129,8 +129,23 @@ public class Genome extends LevelTree<ConnectionGene, NodeGene> {
      *
      * @return All node ids.
      */
-    public Integer[] getNodeIds() {
-        return nodes.keySet().toArray(Integer[]::new);
+    public List<Integer> getNodeIds() {
+        return new ArrayList<>(nodes.keySet());
+    }
+
+    /**
+     * Same as getNodeIds() but filters out the provided type from the result.
+     *
+     * @param type Type to exclude from result.
+     * @return Node ids.
+     */
+    public List<Integer> getFilteredNodeIds(NodeGene.Type type) {
+        List<Integer> nodes = new ArrayList<>();
+        for (NodeGene n : this.nodes.values()) {
+            if (n.getType() != type)
+                nodes.add(n.getId());
+        }
+        return nodes;
     }
 
     public NodeGene getNode(int id) {
