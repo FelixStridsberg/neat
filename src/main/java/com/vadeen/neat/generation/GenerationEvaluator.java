@@ -1,11 +1,6 @@
 package com.vadeen.neat.generation;
 
-import com.vadeen.neat.genome.Genome;
 import com.vadeen.neat.genome.GenomeEvaluator;
-import com.vadeen.neat.species.Species;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * The generation evaluator keeps track of a stream of generations.
