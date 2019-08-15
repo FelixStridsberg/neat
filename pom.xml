@@ -6,7 +6,7 @@
 
     <groupId>com.vadeen</groupId>
     <artifactId>neat</artifactId>
-    <version>0.3.0-SNAPSHOT</version>
+    <version>0.2.0</version>
     <packaging>jar</packaging>
 
     <name>${project.groupId}:${project.artifactId}</name>
@@ -29,17 +29,21 @@
         </developer>
     </developers>
 
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <encoding>UTF-8</encoding>
+        <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
+        <project.build.outputEncoding>${encoding}</project.build.outputEncoding>
+        <archetype.encoding>${encoding}</archetype.encoding>
+    </properties>
+
     <scm>
         <connection>scm:git:git://github.com/FelixStridsberg/neat.git</connection>
         <developerConnection>scm:git:ssh://github.com:FelixStridsberg/neat.git</developerConnection>
         <url>http://github.com/FelixStridsberg/neat/tree/master</url>
+        <tag>v${project.version}</tag>
     </scm>
-
-    <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
 
     <dependencies>
         <dependency>
