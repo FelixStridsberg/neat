@@ -28,6 +28,8 @@ public class Neat {
     private GenerationFactory generationFactory;
     private GenerationEvaluator generationEvaluator;
 
+    private Generation generation;
+
     public static Neat create(GenomeEvaluator evaluator, int inputs, int outputs) {
         Random random = new Random(System.currentTimeMillis());
         GeneFactory geneFactory = new GeneFactory();
