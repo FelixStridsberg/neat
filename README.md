@@ -2,13 +2,13 @@
 
 # NEAT
 
-Working implementation of the NEAT algorithm in java 11+.
+Working implementation of the NEAT algorithm in java 11+. All settings are customizable at runtime, see [neat-gui](https://github.com/FelixStridsberg/neat-gui) for a real time graphical interface.
 
 For example usage, see the `com.vadeen.neat.experiments.XOR` test.
 
 # GUI library
 
-[neat-gui](https://github.com/FelixStridsberg/neat-gui) - Simple graphics library.
+[neat-gui](https://github.com/FelixStridsberg/neat-gui) - Graphics library.
 
 
 # Experiments
