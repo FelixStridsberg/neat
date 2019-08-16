@@ -26,6 +26,11 @@ public class PrettyPrinter extends DefaultPrettyPrinter {
         _objectIndenter = new ObjectIndenter();
     }
 
+    @Override
+    public DefaultPrettyPrinter createInstance() {
+        return new PrettyPrinter(maxLevel);
+    }
+
     private class ArrayIndenter implements Indenter {
         @Override
         public void writeIndentation(JsonGenerator g, int level) throws IOException {
