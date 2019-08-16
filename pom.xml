@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.vadeen</groupId>
@@ -36,13 +34,14 @@
         <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
         <project.build.outputEncoding>${encoding}</project.build.outputEncoding>
         <archetype.encoding>${encoding}</archetype.encoding>
+        <tagNameFormat>v@{project.version}</tagNameFormat>
     </properties>
 
     <scm>
-        <connection>scm:git:git://github.com/FelixStridsberg/neat.git</connection>
-        <developerConnection>scm:git:ssh://github.com:FelixStridsberg/neat.git</developerConnection>
+        <connection>scm:git:git@github.com/FelixStridsberg/neat.git</connection>
+        <developerConnection>scm:git:git@github.com:FelixStridsberg/neat.git</developerConnection>
         <url>http://github.com/FelixStridsberg/neat/tree/master</url>
-        <tag>v${project.version}</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <dependencies>
