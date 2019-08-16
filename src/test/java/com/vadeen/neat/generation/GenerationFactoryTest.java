@@ -52,17 +52,17 @@ public class GenerationFactoryTest {
         generationFactory.next(generation);
 
         // BREEDING
-        verify(genomeFactory, times(83)).breed(eq(s1));
-        verify(genomeFactory, times(20)).breed(eq(s2));
-        verify(genomeFactory, times(6)).breed(eq(s3));
+        verify(genomeFactory, times(66)).breed(eq(s1));
+        verify(genomeFactory, times(32)).breed(eq(s2));
+        verify(genomeFactory, times(10)).breed(eq(s3));
 
         // MUTATION
-        verify(genomeFactory, times(28)).copyMutate(eq(s1));
-        verify(genomeFactory, times(7)).copyMutate(eq(s2));
-        verify(genomeFactory, times(2)).copyMutate(eq(s3));
+        verify(genomeFactory, times(22)).copyMutate(eq(s1));
+        verify(genomeFactory, times(11)).copyMutate(eq(s2));
+        verify(genomeFactory, times(3)).copyMutate(eq(s3));
 
         // Population is 150.
-        verify(genomeFactory, times(1)).breed(anyList());
+        verify(genomeFactory, times(3)).breed(anyList());
     }
 
     /**

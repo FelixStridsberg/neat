@@ -229,15 +229,9 @@ public class GenerationFactory {
             return result;
         }
 
-        Genome best = old.getBestGenome();
-
         float totalFitness = 0.0f;
         for (Species s : oldSpecies) {
             totalFitness += s.getFitness();
-
-            // TODO temporary, double fitness for species with best genome to make it populate more.
-            if (s.getBestGenome() == best)
-                totalFitness += s.getFitness();
         }
 
         for (Species s : oldSpecies) {
@@ -245,11 +239,6 @@ public class GenerationFactory {
                 break;
 
             float fitness = s.getFitness();
-
-            // TODO temporary, double fitness for species with best genome to make it populate more.
-            if (s.getBestGenome() == best)
-                fitness += s.getFitness();
-
             float proportion = fitness/totalFitness;
             result.put(s, proportion);
         }
