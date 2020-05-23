@@ -43,30 +43,10 @@ public class LevelTreeConnectionIndex {
     }
 
     public void addConnection(LevelConnection con) {
-        List<Integer> nodeInputs = inNodeIndex.get(con.getOut());
-        List<Integer> nodeOutputs = outNodeIndex.get(con.getIn());
-        List<Integer> conInputs = inConIndex.get(con.getOut());
-        List<Integer> conOutputs = outConIndex.get(con.getIn());
-
-        if (nodeInputs == null) {
-            nodeInputs = new ArrayList<>();
-            inNodeIndex.put(con.getOut(), nodeInputs);
-        }
-
-        if (nodeOutputs == null) {
-            nodeOutputs = new ArrayList<>();
-            outNodeIndex.put(con.getIn(), nodeOutputs);
-        }
-
-        if (conInputs == null) {
-            conInputs = new ArrayList<>();
-            inConIndex.put(con.getOut(), conInputs);
-        }
-
-        if (conOutputs == null) {
-            conOutputs = new ArrayList<>();
-            outConIndex.put(con.getIn(), conOutputs);
-        }
+        List<Integer> nodeInputs = inNodeIndex.computeIfAbsent(con.getOut(), key -> new ArrayList<>());
+        List<Integer> nodeOutputs = outNodeIndex.computeIfAbsent(con.getIn(), key -> new ArrayList<>());
+        List<Integer> conInputs = inConIndex.computeIfAbsent(con.getOut(), key -> new ArrayList<>());
+        List<Integer> conOutputs = outConIndex.computeIfAbsent(con.getIn(), key -> new ArrayList<>());
 
         nodeInputs.add(con.getIn());
         nodeOutputs.add(con.getOut());
