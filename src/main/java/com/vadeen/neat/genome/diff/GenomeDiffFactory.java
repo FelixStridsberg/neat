@@ -40,7 +40,8 @@ public class GenomeDiffFactory {
            Diff<List<ConnectionGene>> matching,
            Diff<List<ConnectionGene>> disjoint
    ) {
-      for (int i = 1; i <= Math.min(innovations.getLeft(), innovations.getRight()); i++) {
+      int minInnovation = Math.min(innovations.getLeft(), innovations.getRight());
+      for (int i = 1; i <= minInnovation; i++) {
          ConnectionGene leftCon = genomes.getLeft().getConnections().get(i);
          ConnectionGene rightCon = genomes.getRight().getConnections().get(i);
 
