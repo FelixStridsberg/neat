@@ -1,6 +1,7 @@
 package com.vadeen.neat.genome;
 
 import com.vadeen.neat.gene.ConnectionGene;
+import com.vadeen.neat.genome.diff.GenomeDiff;
 import com.vadeen.neat.io.NeatIO;
 import org.junit.Test;
 

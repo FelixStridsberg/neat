@@ -3,6 +3,7 @@ package com.vadeen.neat.genome;
 import com.vadeen.neat.Random;
 import com.vadeen.neat.gene.ConnectionGene;
 import com.vadeen.neat.gene.NodeGene;
+import com.vadeen.neat.genome.diff.GenomeDiff;
 import com.vadeen.neat.species.Species;
 
 import java.util.*;
