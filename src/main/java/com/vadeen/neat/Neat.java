@@ -10,12 +10,7 @@ import com.vadeen.neat.species.SpeciesFactory;
 import java.util.Collections;
 
 /**
- * This is an abstraction around the generation of a neat network, so the network can be loaded and saved to files and
- * to avoid having to create every damn object required every time.
- *
- * This can create all objects with default configs and allows you to get them and reconfigure at any time.
- *
- * Or even swap em out.
+ * High level interface to the Neat network.
  */
 public class Neat {
     private Random random;
@@ -29,52 +24,33 @@ public class Neat {
     private GenerationEvaluator generationEvaluator;
 
     public static Neat create(GenomeEvaluator evaluator, int inputs, int outputs) {
-        Random random = new Random(System.currentTimeMillis());
-        GeneFactory geneFactory = new GeneFactory();
-        GenomeMutator mutator = new GenomeMutator(random, geneFactory);
-        GenomeValidator validator = new GenomeValidator();
-        GenomeFactory genomeFactory = new GenomeFactory(mutator, validator, random);
-        GenomeComparator genomeComparator = new GenomeComparator();
-        SpeciesFactory speciesFactory = new SpeciesFactory(genomeComparator);
+        Neat neat = createBase();
+        Genome starter = Genome.create(neat.geneFactory, inputs, outputs);
+        Generation firstGeneration = new Generation(Collections.singletonList(neat.speciesFactory.createSpecies(starter)));
 
-        Genome starter = Genome.create(geneFactory, inputs, outputs);
-        Generation firstGeneration = new Generation(Collections.singletonList(speciesFactory.createSpecies(starter)));
-        GenerationFactory generationFactory = new GenerationFactory(genomeFactory, speciesFactory);
-        GenerationEvaluator generationEvaluator = new GenerationEvaluator(evaluator, generationFactory, firstGeneration);
-
-        return new Neat(random, geneFactory, mutator, validator, genomeFactory,
-                genomeComparator, speciesFactory, generationFactory, generationEvaluator);
+        neat.generationFactory = new GenerationFactory(neat.genomeFactory, neat.speciesFactory);
+        neat.generationEvaluator = new GenerationEvaluator(evaluator, neat.generationFactory, firstGeneration);
+        return neat;
     }
 
     public static Neat create(GenomeEvaluator evaluator, Generation generation) {
-        Random random = new Random(System.currentTimeMillis());
-        GeneFactory geneFactory = new GeneFactory();
-        GenomeMutator mutator = new GenomeMutator(random, geneFactory);
-        GenomeValidator validator = new GenomeValidator();
-        GenomeFactory genomeFactory = new GenomeFactory(mutator, validator, random);
-        GenomeComparator genomeComparator = new GenomeComparator();
-        SpeciesFactory speciesFactory = new SpeciesFactory(genomeComparator);
-
-        GenerationFactory generationFactory = new GenerationFactory(genomeFactory, speciesFactory);
-        GenerationEvaluator generationEvaluator = new GenerationEvaluator(evaluator, generationFactory, generation);
-
-        return new Neat(random, geneFactory, mutator, validator, genomeFactory,
-                genomeComparator, speciesFactory, generationFactory, generationEvaluator);
+        Neat neat = createBase();
+        neat.generationFactory = new GenerationFactory(neat.genomeFactory, neat.speciesFactory);
+        neat.generationEvaluator = new GenerationEvaluator(evaluator, neat.generationFactory, generation);
+        return neat;
     }
 
-    // Ridiculous constructor I know, but this is just a convenience class so you don't have to create all of these.
-    private Neat(Random random, GeneFactory geneFactory, GenomeMutator mutator, GenomeValidator validator,
-                GenomeFactory genomeFactory, GenomeComparator genomeComparator, SpeciesFactory speciesFactory,
-                GenerationFactory generationFactory, GenerationEvaluator generationEvaluator) {
-        this.random = random;
-        this.geneFactory = geneFactory;
-        this.mutator = mutator;
-        this.validator = validator;
-        this.genomeFactory = genomeFactory;
-        this.genomeComparator = genomeComparator;
-        this.speciesFactory = speciesFactory;
-        this.generationFactory = generationFactory;
-        this.generationEvaluator = generationEvaluator;
+    private static Neat createBase() {
+        Neat neat = new Neat();
+        neat.random = new Random(System.currentTimeMillis());
+        neat.geneFactory = new GeneFactory();
+        neat.mutator = new GenomeMutator(neat.random, neat.geneFactory);
+        neat.validator = new GenomeValidator();
+        neat.genomeFactory = new GenomeFactory(neat.mutator, neat.validator, neat.random);
+        neat.genomeComparator = new GenomeComparator();
+        neat.speciesFactory = new SpeciesFactory(neat.genomeComparator);
+
+        return neat;
     }
 
     public Generation evolve() {
