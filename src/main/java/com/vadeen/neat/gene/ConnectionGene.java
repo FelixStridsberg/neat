@@ -68,6 +68,7 @@ public class ConnectionGene extends LevelConnection {
         return weight;
     }
 
+    @Override
     public String toString() {
         return "ConnectionGene{" +
                 "id=" + id +

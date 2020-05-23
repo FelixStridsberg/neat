@@ -33,9 +33,6 @@ public class LevelTree<C extends LevelConnection, N extends LevelNode> {
 
     protected LevelTreeConnectionIndex connectionIndex = new LevelTreeConnectionIndex();
 
-    public LevelTree() {
-    }
-
     /**
      * Add node to the tree.
      * Nodes are always added to level 0. When connected they are upgraded to the suitable level.

@@ -19,7 +19,7 @@ public class NodeGene extends LevelNode {
         HIDDEN(1),
         OUTPUT(2);
 
-        private int order;
+        private final int order;
 
         Type(int order) {
             this.order = order;
@@ -33,7 +33,7 @@ public class NodeGene extends LevelNode {
     /**
      * Node type.
      */
-    private Type type;
+    private final Type type;
 
     /**
      * @param type Type of node.
@@ -58,6 +58,7 @@ public class NodeGene extends LevelNode {
         return type;
     }
 
+    @Override
     public String toString() {
         return "NodeGene{" +
                 "id=" + id +
@@ -66,6 +67,7 @@ public class NodeGene extends LevelNode {
                 "}";
     }
 
+    @Override
     public boolean equals(final Object o) {
         if (o == this)
             return true;
@@ -81,6 +83,7 @@ public class NodeGene extends LevelNode {
         return type == other.type;
     }
 
+    @Override
     public int hashCode() {
         final int PRIME = 59;
         return super.hashCode() * PRIME + Objects.hash(type);

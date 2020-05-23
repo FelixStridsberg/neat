@@ -16,7 +16,7 @@ public class Genome extends LevelTree<ConnectionGene, NodeGene> {
     /**
      * Every genome has an id, just for debugging purposes.
      */
-    public int id;
+    private final int id;
 
     /**
      * This is the counter that generates the debug id.
@@ -98,7 +98,13 @@ public class Genome extends LevelTree<ConnectionGene, NodeGene> {
         return genome;
     }
 
-    public Genome(int id) {this.id = id;}
+    public Genome(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
 
     /**
      * @return All input nodes.
@@ -146,10 +152,6 @@ public class Genome extends LevelTree<ConnectionGene, NodeGene> {
                 nodes.add(n.getId());
         }
         return nodes;
-    }
-
-    public NodeGene getNode(int id) {
-        return nodes.get(id);
     }
 
     public Map<Integer, NodeGene> getNodes() {

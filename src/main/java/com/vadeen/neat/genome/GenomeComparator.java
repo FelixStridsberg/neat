@@ -97,7 +97,7 @@ public class GenomeComparator {
         Iterator<ConnectionGene> leftIt = diff.getMatchingLeft().iterator();
         Iterator<ConnectionGene> rightIt = diff.getMatchingRight().iterator();
 
-        if (diff.getMatchingLeft().size() == 0)
+        if (diff.getMatchingLeft().isEmpty())
             return 0;
 
         float total = 0;

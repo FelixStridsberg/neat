@@ -37,24 +37,21 @@ public class GenomeValidator {
 
     private boolean validateHiddenNode(Genome genome, int nodeId) {
         return hasNodeIncoming(genome, nodeId) && hasNodeOutgoing(genome, nodeId);
-
     }
 
     private boolean validateOutputNode(Genome genome, int nodeId) {
         return !hasNodeOutgoing(genome, nodeId);
-
     }
 
     private boolean validateInputNode(Genome genome, int nodeId) {
         return !hasNodeIncoming(genome, nodeId);
-
     }
 
     private boolean hasNodeOutgoing(Genome genome, int nodeId) {
-        return genome.getOutConnections(nodeId).size() > 0;
+        return !genome.getOutConnections(nodeId).isEmpty();
     }
 
     private boolean hasNodeIncoming(Genome genome, int nodeId) {
-        return genome.getInConnections(nodeId).size() > 0;
+        return !genome.getInConnections(nodeId).isEmpty();
     }
 }

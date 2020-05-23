@@ -253,7 +253,7 @@ public class GenomeFactory {
         List<ConnectionGene> all = new LinkedList<>(left);
         all.addAll(right);
 
-        if (all.size() == 0)
+        if (all.isEmpty())
             return all;
 
         Collections.shuffle(all, random);

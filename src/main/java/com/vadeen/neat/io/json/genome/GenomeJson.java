@@ -35,7 +35,7 @@ public class GenomeJson {
 
     public static GenomeJson of(Genome genome) {
         GenomeJson json = new GenomeJson();
-        json.id = genome.id;
+        json.id = genome.getId();
         json.fitness = genome.getFitness();
         json.nodes = genome.getNodes().values().stream()
                 .map(NodeGeneJson::of)
