@@ -6,7 +6,6 @@ import com.vadeen.neat.gene.GeneFactory;
 import com.vadeen.neat.gene.NodeGene;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * The genome mutator mutate genomes to change their network. There are multiple ways a genome can be mutated, which way

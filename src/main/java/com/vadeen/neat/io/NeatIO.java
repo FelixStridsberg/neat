@@ -65,7 +65,7 @@ public class NeatIO {
         GenomeJson json = GenomeJson.of(genome);
 
         ObjectMapper mapper = new ObjectMapper();
-        mapper.setDefaultPrettyPrinter(new PrettyPrinter(1));
+        mapper.setDefaultPrettyPrinter(new PrettyPrinter());
         mapper.writerWithDefaultPrettyPrinter().writeValue(file, json);
     }
 
@@ -73,7 +73,7 @@ public class NeatIO {
         GenerationJson json = GenerationJson.of(generation);
 
         ObjectMapper mapper = new ObjectMapper();
-        mapper.setDefaultPrettyPrinter(new PrettyPrinter(3));
+        mapper.setDefaultPrettyPrinter(new PrettyPrinter());
         mapper.writerWithDefaultPrettyPrinter().writeValue(file, json);
     }
 
@@ -81,7 +81,7 @@ public class NeatIO {
         NeatJson json = NeatJson.of(neat);
 
         ObjectMapper mapper = new ObjectMapper();
-        mapper.setDefaultPrettyPrinter(new PrettyPrinter(3));
+        mapper.setDefaultPrettyPrinter(new PrettyPrinter());
         mapper.writerWithDefaultPrettyPrinter().writeValue(file, json);
     }
 }

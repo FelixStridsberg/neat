@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -36,36 +37,34 @@ public class GenomeDiffTest {
 
 
         // Assert the diff contains the correct elements
-        GenomeDiff diff = diffLeft;
-
 
         // Disjoint
-        assertThat(diff.getDisjointLeft(), is(Arrays.asList(
+        assertThat(diffLeft.getDisjointLeft(), is(Collections.singletonList(
                 new ConnectionGene(1, 5, 1.0f, true, 8)
         )));
-        assertThat(diff.getDisjointRight(), is(Arrays.asList(
+        assertThat(diffLeft.getDisjointRight(), is(Arrays.asList(
                 new ConnectionGene(5, 6, 2.0f, true, 6),
                 new ConnectionGene(6, 4, 2.0f, true, 7)
         )));
 
 
         // Excess
-        assertThat(diff.getExcessLeft(), is(new LinkedList<>()));
-        assertThat(diff.getExcessRight(), is(Arrays.asList(
+        assertThat(diffLeft.getExcessLeft(), is(new LinkedList<>()));
+        assertThat(diffLeft.getExcessRight(), is(Arrays.asList(
                 new ConnectionGene(3, 5, 2.0f, true, 9),
                 new ConnectionGene(1, 6, 2.0f, true, 10)
         )));
 
 
         // Matching
-        assertThat(diff.getMatchingLeft(), is(Arrays.asList(
+        assertThat(diffLeft.getMatchingLeft(), is(Arrays.asList(
                 new ConnectionGene(1, 4, 1.0f, true, 1),
                 new ConnectionGene(2, 4, 1.0f, false, 2),
                 new ConnectionGene(3, 4, 1.0f, true, 3),
                 new ConnectionGene(2, 5, 1.0f, true, 4),
                 new ConnectionGene(5, 4, 1.0f, true, 5)
         )));
-        assertThat(diff.getMatchingRight(), is(Arrays.asList(
+        assertThat(diffLeft.getMatchingRight(), is(Arrays.asList(
                 new ConnectionGene(1, 4, 2.0f, true, 1),
                 new ConnectionGene(2, 4, 2.0f, false, 2),
                 new ConnectionGene(3, 4, 2.0f, true, 3),

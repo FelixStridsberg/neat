@@ -18,9 +18,9 @@ import java.io.IOException;
  */
 public class PrettyPrinter extends DefaultPrettyPrinter {
 
-    private int maxLevel = 3;
+    private static final int MAX_LEVEL = 3;
 
-    public PrettyPrinter(int levels) {
+    public PrettyPrinter() {
         super();
         _arrayIndenter = new ArrayIndenter();
         _objectIndenter = new ObjectIndenter();
@@ -28,10 +28,10 @@ public class PrettyPrinter extends DefaultPrettyPrinter {
 
     @Override
     public DefaultPrettyPrinter createInstance() {
-        return new PrettyPrinter(maxLevel);
+        return new PrettyPrinter();
     }
 
-    private class ArrayIndenter implements Indenter {
+    private static class ArrayIndenter implements Indenter {
         @Override
         public void writeIndentation(JsonGenerator g, int level) throws IOException {
             g.writeRaw("\n");
@@ -45,10 +45,10 @@ public class PrettyPrinter extends DefaultPrettyPrinter {
         }
     }
 
-    private class ObjectIndenter implements Indenter {
+    private static class ObjectIndenter implements Indenter {
         @Override
         public void writeIndentation(JsonGenerator g, int level) throws IOException {
-            if (level <= maxLevel) {
+            if (level <= MAX_LEVEL) {
                 g.writeRaw("\n");
                 for (int i = 0; i < level; i++)
                     g.writeRaw("  ");

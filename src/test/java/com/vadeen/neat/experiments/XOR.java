@@ -22,7 +22,7 @@ public class XOR {
 
     private final static int MAX_GENERATIONS = 300;
 
-    private GenomeEvaluator evaluator = new SimpleEvaluator() {
+    private final GenomeEvaluator evaluator = new SimpleEvaluator() {
         private final List<List<Float>> input = Arrays.asList(
                 Arrays.asList(1.0f, 1.0f),
                 Arrays.asList(1.0f, 0.0f),
