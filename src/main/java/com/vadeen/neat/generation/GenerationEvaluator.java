@@ -1,12 +1,16 @@
 package com.vadeen.neat.generation;
 
+import com.vadeen.neat.Neat;
 import com.vadeen.neat.genome.GenomeEvaluator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The generation evaluator keeps track of a stream of generations.
  * Give it one and you can get the future generations.
  */
 public class GenerationEvaluator {
+    private static final Logger log = LoggerFactory.getLogger(GenerationEvaluator.class);
 
     /**
      * Evaluator to evaluate the fitness of each genome.
@@ -52,18 +56,19 @@ public class GenerationEvaluator {
      * Progress to the next generation.
      */
     public Generation nextGeneration() {
+        log.debug("Creating generation {}.", generationCounter + 1);
+
         Generation oldGeneration = generation;
 
-        // If we haven't improved for long enough. It's time to refocus.
+        // Refocus if generations have not improved for some time.
         if (unimprovedCount >= refocusThreshold) {
+            log.info("No improvements in {} generations. Refocusing.", unimprovedCount);
+
             oldGeneration = generationFactory.refocus(oldGeneration);
             unimprovedCount = 0;
         }
 
-        // Woho we have the next generation! Lets hope they don't let us down.
         generation = generationFactory.next(oldGeneration);
-
-        // Evaluate all genomes.
         evaluate(generation);
 
         // If generation did not improve in fitness. Increase counter.
