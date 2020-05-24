@@ -6,6 +6,8 @@ import com.vadeen.neat.generation.GenerationEvaluator;
 import com.vadeen.neat.generation.GenerationFactory;
 import com.vadeen.neat.genome.*;
 import com.vadeen.neat.species.SpeciesFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Collections;
 
@@ -13,6 +15,8 @@ import java.util.Collections;
  * High level interface to the Neat network.
  */
 public class Neat {
+    private static final Logger log = LoggerFactory.getLogger(Neat.class);
+
     private Random random;
     private GeneFactory geneFactory;
     private GenomeMutator mutator;
@@ -24,31 +28,32 @@ public class Neat {
     private GenerationEvaluator generationEvaluator;
 
     public static Neat create(GenomeEvaluator evaluator, int inputs, int outputs) {
-        Neat neat = createBase();
+        Neat neat = create(System.currentTimeMillis(), evaluator, null);
+
         Genome starter = Genome.create(neat.geneFactory, inputs, outputs);
         Generation firstGeneration = new Generation(Collections.singletonList(neat.speciesFactory.createSpecies(starter)));
 
-        neat.generationFactory = new GenerationFactory(neat.genomeFactory, neat.speciesFactory);
         neat.generationEvaluator = new GenerationEvaluator(evaluator, neat.generationFactory, firstGeneration);
         return neat;
     }
 
     public static Neat create(GenomeEvaluator evaluator, Generation generation) {
-        Neat neat = createBase();
-        neat.generationFactory = new GenerationFactory(neat.genomeFactory, neat.speciesFactory);
-        neat.generationEvaluator = new GenerationEvaluator(evaluator, neat.generationFactory, generation);
-        return neat;
+        return create(System.currentTimeMillis(), evaluator, generation);
     }
 
-    private static Neat createBase() {
+    public static Neat create(long seed, GenomeEvaluator evaluator, Generation generation) {
+        log.info("Creating NEAT network with seed: {}", seed);
+
         Neat neat = new Neat();
-        neat.random = new Random(System.currentTimeMillis());
+        neat.random = new Random(seed);
         neat.geneFactory = new GeneFactory();
         neat.mutator = new GenomeMutator(neat.random, neat.geneFactory);
         neat.validator = new GenomeValidator();
         neat.genomeFactory = new GenomeFactory(neat.mutator, neat.validator, neat.random);
         neat.genomeComparator = new GenomeComparator();
         neat.speciesFactory = new SpeciesFactory(neat.genomeComparator);
+        neat.generationFactory = new GenerationFactory(neat.genomeFactory, neat.speciesFactory);
+        neat.generationEvaluator = new GenerationEvaluator(evaluator, neat.generationFactory, generation);
 
         return neat;
     }
