@@ -1,6 +1,5 @@
 package com.vadeen.neat.generation;
 
-import com.vadeen.neat.Neat;
 import com.vadeen.neat.genome.GenomeEvaluator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -71,8 +70,8 @@ public class GenerationEvaluator {
         generation = generationFactory.next(oldGeneration);
         evaluate(generation);
 
-        // If generation did not improve in fitness. Increase counter.
-        if (oldGeneration.getBestGenome().getFitness() == generation.getBestGenome().getFitness())
+        // Count generations that did not improve in fitness.
+        if (oldGeneration.getTotalFitness() == generation.getTotalFitness())
             unimprovedCount++;
 
         generation.setGenerationNumber(++generationCounter);

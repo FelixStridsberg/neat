@@ -35,6 +35,16 @@ public class Generation {
         this.generationNumber = generationNumber;
     }
 
+    public float getTotalFitness() {
+        float fitness = 0.0f;
+        for (Species s : species) {
+            for (Genome genome : s.getGenomes()) {
+                fitness += genome.getFitness();
+            }
+        }
+        return fitness;
+    }
+
     /**
      * @return The best genome of this generation.
      */
