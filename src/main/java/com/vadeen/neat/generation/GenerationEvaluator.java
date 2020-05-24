@@ -63,18 +63,18 @@ public class GenerationEvaluator {
         if (unimprovedCount >= refocusThreshold) {
             log.info("No improvements in {} generations. Refocusing.", unimprovedCount);
 
-            oldGeneration = generationFactory.refocus(oldGeneration);
+            generation = generationFactory.refocus(oldGeneration);
             unimprovedCount = 0;
+        } else {
+            generation = generationFactory.next(oldGeneration);
+
+            // Count generations that did not improve in fitness.
+            if (oldGeneration.getTotalFitness() == generation.getTotalFitness())
+                unimprovedCount++;
         }
 
-        generation = generationFactory.next(oldGeneration);
-        evaluate(generation);
-
-        // Count generations that did not improve in fitness.
-        if (oldGeneration.getTotalFitness() == generation.getTotalFitness())
-            unimprovedCount++;
-
         generation.setGenerationNumber(++generationCounter);
+        evaluate(generation);
 
         return generation;
     }
