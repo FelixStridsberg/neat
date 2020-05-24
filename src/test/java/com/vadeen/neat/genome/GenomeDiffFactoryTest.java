@@ -13,10 +13,10 @@ import java.util.LinkedList;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
-public class GenomeDiffTest {
+public class GenomeDiffFactoryTest {
 
     @Test
-    public void testStanleyFig4() throws IOException {
+    public void testDiffStanleyFig4() throws IOException {
         Genome g1 = NeatIO.genomeFromResource("genomes/stanley_fig4_p1.json");
         Genome g2 = NeatIO.genomeFromResource("genomes/stanley_fig4_p2.json");
 

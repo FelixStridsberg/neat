@@ -1,7 +1,7 @@
 package com.vadeen.neat.experiments;
 
 import com.vadeen.neat.Neat;
-import com.vadeen.neat.evaluators.SimpleEvaluator;
+import com.vadeen.neat.evaluator.SimpleEvaluator;
 import com.vadeen.neat.generation.Generation;
 import com.vadeen.neat.genome.Genome;
 import com.vadeen.neat.genome.GenomeEvaluator;

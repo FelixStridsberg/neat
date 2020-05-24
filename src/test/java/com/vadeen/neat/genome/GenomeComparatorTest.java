@@ -24,7 +24,7 @@ public class GenomeComparatorTest {
     }
 
     @Test
-    public void testDistanceCompareSimpleFig2() throws IOException {
+    public void testDistanceCompareSimpleAndFig2() throws IOException {
         Genome g1 = NeatIO.genomeFromResource("genomes/simple.json");
         Genome g2 = NeatIO.genomeFromResource("genomes/stanley_fig2.json");
 

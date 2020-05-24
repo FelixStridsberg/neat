@@ -1,4 +1,4 @@
-package com.vadeen.neat.evaluators;
+package com.vadeen.neat.evaluator;
 
 import com.vadeen.neat.genome.Genome;
 import com.vadeen.neat.genome.GenomeEvaluator;
