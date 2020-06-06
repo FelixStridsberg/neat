@@ -1,12 +1,14 @@
 package com.vadeen.neat.genome;
 
-import com.vadeen.neat.Random;
+import com.vadeen.neat.BiasedRandom;
 import com.vadeen.neat.gene.GeneFactory;
 import com.vadeen.neat.gene.NodeGene;
 import com.vadeen.neat.io.NeatIO;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.Random;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -16,12 +18,20 @@ import static org.mockito.Mockito.when;
 
 public class GenomeMutatorTest {
 
+    private Random mockedRandom;
+    private BiasedRandom biasedRandom;
+
+    @Before
+    public void setUp() throws Exception {
+        mockedRandom = mock(Random.class);
+        biasedRandom = new BiasedRandom(mockedRandom, 1.0f);
+    }
+
     @Test
     public void testNodeMutation() throws IOException {
         GeneFactory geneFactory = new GeneFactory();
-        Random mockedRandom = mock(Random.class);
         GenomeValidator validator = new GenomeValidator();
-        GenomeMutator mutator = new GenomeMutator(mockedRandom, geneFactory);
+        GenomeMutator mutator = new GenomeMutator(biasedRandom, geneFactory);
 
         mutator.setNodeMutationProbability(1.0f);
         mutator.setConnectionMutationProbability(0.0f);
@@ -53,9 +63,8 @@ public class GenomeMutatorTest {
     @Test
     public void testConnectionMutation() throws IOException {
         GeneFactory geneFactory = new GeneFactory();
-        Random mockedRandom = mock(Random.class);
         GenomeValidator validator = new GenomeValidator();
-        GenomeMutator mutator = new GenomeMutator(mockedRandom, geneFactory);
+        GenomeMutator mutator = new GenomeMutator(biasedRandom, geneFactory);
 
         mutator.setConnectionMutationProbability(1.0f);
         mutator.setNodeMutationProbability(0.0f);
@@ -87,9 +96,8 @@ public class GenomeMutatorTest {
     @Test
     public void testConnectionMutationReversed() throws IOException {
         GeneFactory geneFactory = new GeneFactory();
-        Random mockedRandom = mock(Random.class);
         GenomeValidator validator = new GenomeValidator();
-        GenomeMutator mutator = new GenomeMutator(mockedRandom, geneFactory);
+        GenomeMutator mutator = new GenomeMutator(biasedRandom, geneFactory);
 
         mutator.setWeightMutationProbability(1.0f);
         mutator.setConnectionMutationProbability(0.0f);
@@ -118,9 +126,8 @@ public class GenomeMutatorTest {
 
     @Test
     public void testConnectionMutationExisting() throws IOException {
-        Random mockedRandom = mock(Random.class);
         GenomeValidator validator = new GenomeValidator();
-        GenomeMutator mutator = new GenomeMutator(mockedRandom, new GeneFactory());
+        GenomeMutator mutator = new GenomeMutator(biasedRandom, new GeneFactory());
 
         mutator.setConnectionMutationProbability(1.0f);
         mutator.setNodeMutationProbability(0.0f);

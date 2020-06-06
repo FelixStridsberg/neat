@@ -2,7 +2,7 @@ package com.vadeen.neat.io.json;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.vadeen.neat.Neat;
-import com.vadeen.neat.Random;
+import com.vadeen.neat.BiasedRandom;
 import com.vadeen.neat.gene.GeneFactory;
 import com.vadeen.neat.generation.Generation;
 import com.vadeen.neat.generation.GenerationEvaluator;
@@ -17,6 +17,8 @@ import com.vadeen.neat.io.json.genome.GenomeFactoryJson;
 import com.vadeen.neat.io.json.genome.GenomeMutatorJson;
 import com.vadeen.neat.io.json.species.SpeciesFactoryJson;
 import com.vadeen.neat.species.SpeciesFactory;
+
+import java.util.concurrent.ThreadLocalRandom;
 
 public class NeatJson {
     @JsonProperty
@@ -67,7 +69,7 @@ public class NeatJson {
     }
 
     public Neat toNeat(GenomeEvaluator evaluator) {
-        Random random = new Random();
+        BiasedRandom random = new BiasedRandom(ThreadLocalRandom.current());
 
         GenomeValidator validator = new GenomeValidator();
         GeneFactory geneFactory = this.geneFactory.toGeneFactory();

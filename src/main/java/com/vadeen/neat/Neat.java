@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Collections;
+import java.util.Random;
 
 /**
  * High level interface to the Neat network.
@@ -17,7 +18,7 @@ import java.util.Collections;
 public class Neat {
     private static final Logger log = LoggerFactory.getLogger(Neat.class);
 
-    private Random random;
+    private BiasedRandom random;
     private GeneFactory geneFactory;
     private GenomeMutator mutator;
     private GenomeValidator validator;
@@ -45,7 +46,7 @@ public class Neat {
         log.info("Creating NEAT network with seed: {}", seed);
 
         Neat neat = new Neat();
-        neat.random = new Random(seed);
+        neat.random = new BiasedRandom(new Random(seed));
         neat.geneFactory = new GeneFactory();
         neat.mutator = new GenomeMutator(neat.random, neat.geneFactory);
         neat.validator = new GenomeValidator();
@@ -66,11 +67,11 @@ public class Neat {
         return generationEvaluator.getGeneration();
     }
 
-    public Random getRandom() {
+    public BiasedRandom getRandom() {
         return random;
     }
 
-    public void setRandom(Random random) {
+    public void setRandom(BiasedRandom random) {
         this.random = random;
     }
 

@@ -1,6 +1,6 @@
 package com.vadeen.neat.genome;
 
-import com.vadeen.neat.Random;
+import com.vadeen.neat.BiasedRandom;
 import com.vadeen.neat.gene.ConnectionGene;
 import com.vadeen.neat.gene.GeneFactory;
 import com.vadeen.neat.gene.NodeGene;
@@ -20,7 +20,7 @@ public class GenomeMutator {
     /**
      * Used for generating random numbers. (Surprised?)
      */
-    private Random random;
+    private BiasedRandom random;
 
     /**
      * We use the gene factory to create genes, it keeps track of the ids and innovations.
@@ -52,7 +52,7 @@ public class GenomeMutator {
      */
     private float weightPerturbingFactor = 3.0f;
 
-    public GenomeMutator(Random random, GeneFactory geneFactory) {
+    public GenomeMutator(BiasedRandom random, GeneFactory geneFactory) {
         this.random = random;
         this.geneFactory = geneFactory;
     }
@@ -156,11 +156,11 @@ public class GenomeMutator {
         genome.addConnection(outCon);
     }
 
-    public Random getRandom() {
+    public BiasedRandom getRandom() {
         return random;
     }
 
-    public void setRandom(Random random) {
+    public void setRandom(BiasedRandom random) {
         this.random = random;
     }
 

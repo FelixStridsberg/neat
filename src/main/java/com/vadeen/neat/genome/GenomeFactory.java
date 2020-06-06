@@ -1,6 +1,6 @@
 package com.vadeen.neat.genome;
 
-import com.vadeen.neat.Random;
+import com.vadeen.neat.BiasedRandom;
 import com.vadeen.neat.gene.ConnectionGene;
 import com.vadeen.neat.gene.NodeGene;
 import com.vadeen.neat.genome.diff.GenomeDiff;
@@ -36,9 +36,9 @@ public class GenomeFactory {
     /**
      * For random numbers.
      */
-    private final Random random;
+    private final BiasedRandom random;
 
-    public GenomeFactory(GenomeMutator mutator, GenomeValidator validator, Random random) {
+    public GenomeFactory(GenomeMutator mutator, GenomeValidator validator, BiasedRandom random) {
         this.mutator = mutator;
         this.validator = validator;
         this.random = random;
@@ -217,7 +217,7 @@ public class GenomeFactory {
         this.validator = validator;
     }
 
-    public Random getRandom() {
+    public BiasedRandom getRandom() {
         return random;
     }
 
@@ -257,7 +257,7 @@ public class GenomeFactory {
         if (all.isEmpty())
             return all;
 
-        Collections.shuffle(all, random);
+        Collections.shuffle(all, random.getRandomSource());
         return all.subList(0, random.nextInt(all.size()));
     }
 }
