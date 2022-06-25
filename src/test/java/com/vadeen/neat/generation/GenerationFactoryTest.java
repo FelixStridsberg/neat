@@ -1,5 +1,7 @@
 package com.vadeen.neat.generation;
 
+import static org.mockito.Mockito.*;
+
 import com.vadeen.neat.gene.ConnectionGene;
 import com.vadeen.neat.gene.NodeGene;
 import com.vadeen.neat.genome.Genome;
@@ -9,15 +11,12 @@ import com.vadeen.neat.species.Species;
 import com.vadeen.neat.species.SpeciesFactory;
 import com.vadeen.neat.tree.LevelTree;
 import com.vadeen.neat.tree.LevelTreeConnectionIndex;
-import org.junit.jupiter.api.Test;
-import org.mockito.stubbing.Answer;
-
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-
-import static org.mockito.Mockito.*;
+import org.junit.jupiter.api.Test;
+import org.mockito.stubbing.Answer;
 
 public class GenerationFactoryTest {
 

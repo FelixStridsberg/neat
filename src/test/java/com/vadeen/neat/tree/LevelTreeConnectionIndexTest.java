@@ -1,9 +1,10 @@
 package com.vadeen.neat.tree;
 
-import java.util.Arrays;
-import org.junit.jupiter.api.Test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+
+import java.util.Arrays;
+import org.junit.jupiter.api.Test;
 
 public class LevelTreeConnectionIndexTest {
 

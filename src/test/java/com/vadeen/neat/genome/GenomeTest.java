@@ -1,14 +1,15 @@
 package com.vadeen.neat.genome;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
+
 import com.vadeen.neat.gene.ConnectionGene;
 import com.vadeen.neat.gene.NodeGene;
 import com.vadeen.neat.io.NeatIO;
 import java.io.IOException;
 import java.util.List;
 import org.junit.jupiter.api.Test;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
-import static org.junit.jupiter.api.Assertions.assertNotSame;
 
 public class GenomeTest {
 

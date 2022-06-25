@@ -1,5 +1,8 @@
 package com.vadeen.neat.io.json;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vadeen.neat.Neat;
 import com.vadeen.neat.gene.GeneFactory;
@@ -12,8 +15,6 @@ import com.vadeen.neat.genome.GenomeMutator;
 import com.vadeen.neat.species.SpeciesFactory;
 import java.io.IOException;
 import org.junit.jupiter.api.Test;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 public class NeatJsonTest {
 

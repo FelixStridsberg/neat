@@ -1,11 +1,11 @@
 package com.vadeen.neat.genome;
 
-import com.vadeen.neat.io.NeatIO;
-import org.junit.jupiter.api.Test;
-
-import java.io.IOException;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+
+import com.vadeen.neat.io.NeatIO;
+import java.io.IOException;
+import org.junit.jupiter.api.Test;
 
 public class GenomeComparatorTest {
 

@@ -1,5 +1,8 @@
 package com.vadeen.neat.genome;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+
 import com.vadeen.neat.gene.ConnectionGene;
 import com.vadeen.neat.genome.diff.GenomeDiff;
 import com.vadeen.neat.io.NeatIO;
@@ -8,8 +11,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import org.junit.jupiter.api.Test;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
 
 public class GenomeDiffFactoryTest {
 

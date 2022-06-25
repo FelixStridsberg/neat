@@ -1,18 +1,18 @@
 package com.vadeen.neat.experiments;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import com.vadeen.neat.Neat;
 import com.vadeen.neat.evaluator.SimpleEvaluator;
 import com.vadeen.neat.generation.Generation;
 import com.vadeen.neat.genome.Genome;
 import com.vadeen.neat.genome.GenomeEvaluator;
 import com.vadeen.neat.genome.GenomePropagator;
-import org.junit.jupiter.api.Test;
-
 import java.util.Arrays;
 import java.util.List;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.fail;
+import org.junit.jupiter.api.Test;
 
 /**
  * This class sets up a complete network and teaches it to calculate xor.
