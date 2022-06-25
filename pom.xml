@@ -150,6 +150,9 @@
                                 <goals>
                                     <goal>sign</goal>
                                 </goals>
+                                <configuration>
+                                    <keyname>C1A7DE7DD91F5A20</keyname>
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
