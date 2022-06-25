@@ -4,12 +4,10 @@ import com.vadeen.neat.BiasedRandom;
 import com.vadeen.neat.gene.GeneFactory;
 import com.vadeen.neat.gene.NodeGene;
 import com.vadeen.neat.io.NeatIO;
-import org.junit.Before;
-import org.junit.Test;
-
 import java.io.IOException;
 import java.util.Random;
-
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -21,8 +19,8 @@ public class GenomeMutatorTest {
     private Random mockedRandom;
     private BiasedRandom biasedRandom;
 
-    @Before
-    public void setUp() throws Exception {
+    @BeforeEach
+    public void setUp() {
         mockedRandom = mock(Random.class);
         biasedRandom = new BiasedRandom(mockedRandom, 1.0f);
     }

@@ -10,10 +10,8 @@ import com.vadeen.neat.genome.GenomeComparator;
 import com.vadeen.neat.genome.GenomeFactory;
 import com.vadeen.neat.genome.GenomeMutator;
 import com.vadeen.neat.species.SpeciesFactory;
-import org.junit.Test;
-
 import java.io.IOException;
-
+import org.junit.jupiter.api.Test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 

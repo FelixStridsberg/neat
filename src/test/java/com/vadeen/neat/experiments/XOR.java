@@ -6,14 +6,13 @@ import com.vadeen.neat.generation.Generation;
 import com.vadeen.neat.genome.Genome;
 import com.vadeen.neat.genome.GenomeEvaluator;
 import com.vadeen.neat.genome.GenomePropagator;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
-
-import static junit.framework.TestCase.fail;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * This class sets up a complete network and teaches it to calculate xor.

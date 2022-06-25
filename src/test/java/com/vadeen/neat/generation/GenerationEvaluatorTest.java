@@ -3,15 +3,13 @@ package com.vadeen.neat.generation;
 import com.vadeen.neat.genome.Genome;
 import com.vadeen.neat.genome.GenomeEvaluator;
 import com.vadeen.neat.species.Species;
-import org.junit.Before;
-import org.junit.Test;
+import java.util.Collections;
+import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.MockitoAnnotations;
-
-import java.util.Collections;
-import java.util.List;
-
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.ArgumentMatchers.eq;
@@ -23,7 +21,7 @@ public class GenerationEvaluatorTest {
     @Captor
     ArgumentCaptor<List<Species>> speciesCaptor;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         MockitoAnnotations.initMocks(this);
     }

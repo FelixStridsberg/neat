@@ -1,12 +1,11 @@
 package com.vadeen.neat.species;
 
 import com.vadeen.neat.genome.Genome;
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class SpeciesTest {
 

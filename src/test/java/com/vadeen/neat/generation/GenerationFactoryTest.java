@@ -9,7 +9,7 @@ import com.vadeen.neat.species.Species;
 import com.vadeen.neat.species.SpeciesFactory;
 import com.vadeen.neat.tree.LevelTree;
 import com.vadeen.neat.tree.LevelTreeConnectionIndex;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.stubbing.Answer;
 
 import java.lang.reflect.Field;
