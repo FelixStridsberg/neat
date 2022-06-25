@@ -10,9 +10,9 @@ import com.vadeen.neat.species.SpeciesFactory;
 import com.vadeen.neat.tree.LevelTree;
 import com.vadeen.neat.tree.LevelTreeConnectionIndex;
 import org.junit.Test;
-import org.mockito.internal.util.reflection.FieldSetter;
 import org.mockito.stubbing.Answer;
 
+import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -33,7 +33,7 @@ public class GenerationFactoryTest {
 
 
     @Test
-    public void testNextGeneration() throws NoSuchFieldException {
+    public void testNextGeneration() throws Exception {
         GenomeComparator comparator = new GenomeComparator();
         SpeciesFactory speciesFactory = new SpeciesFactory(comparator);
         GenomeFactory genomeFactory = mock(GenomeFactory.class);
@@ -68,7 +68,7 @@ public class GenerationFactoryTest {
     /**
      * Generate a species with specific population and adjusted fitness.
      */
-    private Species generateSpecies(SpeciesFactory speciesFactory, int population, float fitness) throws NoSuchFieldException {
+    private Species generateSpecies(SpeciesFactory speciesFactory, int population, float fitness) throws Exception {
         Genome refGenome = mockGenome();
         when(refGenome.getFitness()).thenReturn(fitness);
 
@@ -89,9 +89,13 @@ public class GenerationFactoryTest {
         return species;
     }
 
-    private Genome mockGenome() throws NoSuchFieldException {
+    private Genome mockGenome() throws NoSuchFieldException,IllegalAccessException {
         Genome genome = mock(Genome.class);
-        FieldSetter.setField(genome, LevelTree.class.getDeclaredField("connectionIndex"), new LevelTreeConnectionIndex());
+
+        Field connectionIndexField = LevelTree.class.getDeclaredField("connectionIndex");
+        connectionIndexField.setAccessible(true);
+        connectionIndexField.set(genome, new LevelTreeConnectionIndex());
+
         return genome;
     }
 }
